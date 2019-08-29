@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+
+<head>
+  <title>CPANEL | CONTACT</title>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="shortcut icon" type="image/x-icon" href="images/cpanel.png" />
+  <link rel="stylesheet" href="bootstrap.css">
+  <link rel="stylesheet" href="cpanel_style.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="bootstrap.js"></script>
+  <script src="cpanel_contact.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+  <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet'
+    type='text/css'>
+  <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
+
+  <script type="text/javascript" charset="utf8"
+    src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+
+
+  <style>
+    .efw {
+      border-color: red;
+    }
+
+
+
+  </style>
+
+
+</head>
+
+<body style="top:0">
+
+
+<!-- Income Message View Modal -->
+<div class="modal fade" id="incomeMessageModal" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Message</h4>
+      </div>
+      <div class="modal-body">
+        <p id="mgsBody" style="padding: 15px;">  </p>
+      </div>
+      <div class="modal-footer">
+        <!--<button type="button" id="sendSms"  class="btn btn-primary" >Send SMS</button>-->
+        <button type="button" id="sendEmail"  class="btn btn-primary" >Send Email</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- Send Message Modal -->
+<div class="modal fade" id="sendMessageModal" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Send Email</h4>
+      </div>
+      <div class="modal-body">
+
+        <h5 id="toEmail">To : email@gmail.com</h5>
+        <input id="sendMessageSubject" type="text" class="form-control" placeholder="Enter subject"  >
+        <textarea id="sendMessageBody" class="form-control" style="min-height: 150px; margin-top: 15px;"
+                  placeholder="Enter message"></textarea>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" id="sendEmailTo"  class="btn btn-primary" >Send</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+
+
+
+
+  <div class="side-menu">
+
+    <div align="center">
+      <img class="logo" src="images/user3.png" />
+      <p style="font-size: 12px ;color: rgb(224, 230, 233); margin: 0px; padding: 0px;"> Hateya H.H.U Higth School
+      </p>
+      <p style="font-size: 12px ;color: rgb(166, 172, 175); margin: 0px; padding: 0px;"> Admin Panel </p>
+    </div>
+
+    <h5 style="border-radius: 0;background: #22C5F6; padding-left: 20px; height: 35px; color: #fff; padding-top: 10px;">
+      Option Menu
+    </h5>
+
+
+    <ul>
+      <li> <a href="/cpanel" > <i class="fa fa-home"> </i> Home </a> </li>
+      <li> <a href="/access_about_us"> <i style="padding: 0 5px;" class="fa fa-info"> </i> About Us </a> </li>
+      <li> <a href="/access_class_data"> <i style="padding: 0 5px;" class="fa fa-graduation-cap"></i> Class
+      </a> </li>
+      <li> <a href="/access_teacher"> <i style="padding: 0 5px;" class="fa fa-users"> </i> Teacher </a> </li>
+      <li> <a  href="/access_library"> <i style="padding: 0 5px;" class="fa fa-book"> </i> Library </a> </li>
+      <li> <a href="/access_result"> <i style="padding: 0 5px;" class="fa fa-bar-chart"> </i> Result </a> </li>
+      <li> <a class="active-option" href="/access_contact"> <i style="padding: 0 5px;" class="fa fa-address-book"> </i> Contact </a> </li>
+      <li> <a href="/image_gallery"> <i style="padding: 0 5px;" class="fa fa-image"></i> Image Gallery </a> </li>
+    </ul>
+
+
+
+  </div>
+
+
+
+
+  <div class="main">
+
+    <div class="top-bar">
+      <div class="container">
+        <h6 style="color: rgba(68, 171, 255, 0.692);padding: 10px 20px; float : left; text-transform: uppercase;">
+          Welcome to Hatrya H.H.U high School Admin Panel
+        </h6>
+        <a href="/logout" class="logout-btn " style="float: right; margin-right: 20px;"> <i class="fa fa-sign-out"></i> Logout
+        </a>
+      </div>
+    </div>
+
+
+
+    <div class="container" style="margin-top:75px;">
+
+
+      <div class="card-view">
+
+        <h4 style="color:#00D591;">Income Message :</h4>
+
+        <table class="table table-striped">
+
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Phone</th>
+              <th>Date</th>
+              <th style="text-align: center">View</th>
+              <th style="text-align: center">Delete</th>
+            </tr>
+          </thead>
+
+          <tbody id="incomeMessageTblBody"> </tbody>
+
+
+        </table>
+
+      </div>
+
+
+
+    </div>
+
+
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+
+</html>

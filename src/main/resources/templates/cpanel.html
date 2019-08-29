@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+
+<head>
+    <title>CPANEL | HOME</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" type="image/x-icon" href="images/cpanel.png" />
+    <link rel="stylesheet" href="bootstrap.css">
+    <link rel="stylesheet" href="cpanel_style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="bootstrap.js"></script>
+    <script src="cpanel.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet'
+          type='text/css'>
+    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
+
+    <script type="text/javascript" charset="utf8"
+            src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+
+
+    <style>
+        .efw {
+            border-color: red;
+        }
+    </style>
+
+
+    <script>
+
+
+        $(document).ready(function () {
+
+
+            $("#selectAllCb").click(function () {
+
+                if($(this).prop('checked')){
+                    for(i=0;i<subscriberList.length;i++) {
+                        $("#cb"+i).prop("checked", true);
+                    }
+                }else{
+                    for(i=0;i<subscriberList.length;i++) {
+                        $("#cb"+i).prop("checked", false);
+                    }
+                }
+
+            });
+
+
+            $("#sendEmailTo").click(function () {
+
+
+                //alert("done : len : "+subscriberList.length);
+                $("#sendMessageModal").modal("hide");
+
+                sorflist = "";
+                subject = $("#sendMessageSubject").val();
+                message = $("#sendMessageBody").val();
+
+                for(i=0;i<subscriberList.length;i++)
+                {
+                    if($("#cb"+i).prop('checked')==true){
+
+                        email = subscriberList[i]["email"];
+
+                        $.post("send_reply_email",
+                            {
+                                email: email,
+                                subject : subject,
+                                message : message
+                            },
+                            function (data, status) {
+
+                            if(data){
+                                sorflist+= email+" : success\n"
+                            }else{
+                                sorflist+= email+" : failed!\n"
+                            }
+
+                            }
+                        );
+
+                    }
+
+                }
+
+
+                alert("Successfully sent.")
+
+
+            });
+
+        });
+
+
+        function getSubscriber() {
+
+
+            $.post("fetch_subscriber", function (data, status) {
+
+                subscriberList = Object.values(data);
+                tblRow = "";
+
+                i = 0;
+                for(subscriber of subscriberList){
+
+                    tblRow+= "<tr>";
+                    tblRow+= "<td <td style='text-align: center;'> <input id='cb"+i+"' type='checkbox'> </td>";
+                    tblRow+= "<td>"+subscriber["name"]+"</td>";
+                    tblRow+= "<td>"+subscriber["email"]+"</td>";
+                    tblRow+= "<td>"+subscriber["phone"]+"</td>";
+                    tblRow+= "<td>"+subscriber["address"]+"</td>";
+                    tblRow+= "<td style='text-align: center;'> <button onclick=\"deleteSubscriber('"+subscriber["email"]+"')\" class='button-delete'>Delete</button> </td>";
+                    tblRow+= "</tr>";
+
+                    i++;
+                }
+
+                $("#subscribeTblBody").empty();
+                $("#subscribeTblBody").append(tblRow);
+
+
+            });
+
+
+        }
+
+    </script>
+
+
+</head>
+
+<body style="top:0">
+
+
+
+
+
+<!-- Edit Notice Modal -->
+<div class="modal fade" id="editNoticeModal" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Update Notice</h4>
+            </div>
+            <div class="modal-body">
+
+                <div style="display:flex">
+                    <div class="form-group" style="width:48%;">
+                        <label>Title:</label>
+                        <input type="text" class="form-control" id="editNoticeTitle" placeholder="Enter Notice Title" >
+                    </div>
+                    <div class="form-group" style="width:48%;  margin-left:4%;">
+                        <label>Date:</label>
+                        <input type="date" class="form-control" id="editNoticeDate" placeholder="Enter Notice Date">
+                    </div>
+                </div>
+
+                <div style="display:flex">
+                    <div class="form-group" style="width:100%;">
+                        <label >Notice Body:</label>
+                        <input type="text" class="form-control" id="editNoticeBody" placeholder="Enter Notice Body">
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="updateNotice"  class="btn btn-primary" >Save</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+
+<!-- Edit Event Modal -->
+<div class="modal fade" id="editEventModal" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Update Event</h4>
+            </div>
+            <div class="modal-body">
+
+                <div style="display:flex">
+                    <div class="form-group" style="width:48%;">
+                        <label>Title:</label>
+                        <input type="text" class="form-control" id="editEventTitle" placeholder="Enter Notice Title" >
+                    </div>
+                    <div class="form-group" style="width:48%;  margin-left:4%;">
+                        <label>Date:</label>
+                        <input type="date" class="form-control" id="editEventDate" placeholder="Enter Notice Date">
+                    </div>
+                </div>
+
+                <div style="display:flex">
+                    <div class="form-group" style="width:48%;">
+                        <label>Start Time:</label>
+                        <input type="time" class="form-control" id="editEventStartTime" placeholder="Enter Notice Title" >
+                    </div>
+                    <div class="form-group" style="width:48%;  margin-left:4%;">
+                        <label>End Time:</label>
+                        <input type="time" class="form-control" id="editEventEndTime" placeholder="Enter Notice Date">
+                    </div>
+                </div>
+
+                <div style="display:flex">
+                    <div class="form-group" style="width:48%;">
+                        <label>Location:</label>
+                        <input type="text" class="form-control" id="editEventLocation" placeholder="Enter Notice Title" >
+                    </div>
+                    <div class="form-group" style="width:48%;  margin-left:4%;">
+                        <label>Type:</label>
+                        <select type="time" class="form-control" id="editEventType">
+                            <option> Sports</option>
+                            <option> Cricket </option>
+                            <option> Football </option>
+                        </select>
+                    </div>
+                </div>
+
+                <div style="display:flex">
+                    <div class="form-group" style="width:100%;">
+                        <label >Event Body:</label>
+                        <input type="text" class="form-control" id="editEventBody" placeholder="Enter Notice Body">
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="updateEvent"  class="btn btn-primary" >Save</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="side-menu">
+
+    <div align="center">
+        <img class="logo" src="images/user3.png" />
+        <p style="font-size: 12px ;color: rgb(224, 230, 233); margin: 0px; padding: 0px;"> Hateya H.H.U Higth School
+        </p>
+        <p style="font-size: 12px ;color: rgb(166, 172, 175); margin: 0px; padding: 0px;"> Admin Panel </p>
+    </div>
+
+    <h5 style="border-radius: 0;background: #22C5F6; padding-left: 20px; height: 35px; color: #fff; padding-top: 10px;">
+        Option Menu
+    </h5>
+
+
+    <ul>
+        <li> <a href="/cpanel" class="active-option"> <i class="fa fa-home"> </i> Home </a> </li>
+        <li> <a href="/access_about_us"> <i style="padding: 0 5px;" class="fa fa-info"> </i> About Us </a> </li>
+        <li> <a href="/access_class_data"> <i style="padding: 0 5px;" class="fa fa-graduation-cap"></i> Class
+        </a> </li>
+        <li> <a href="/access_teacher"> <i style="padding: 0 5px;" class="fa fa-users"> </i> Teacher </a> </li>
+        <li> <a href="/access_library"> <i style="padding: 0 5px;" class="fa fa-book"> </i> Library </a> </li>
+        <li> <a href="/access_result"> <i style="padding: 0 5px;" class="fa fa-bar-chart"> </i> Result </a> </li>
+        <li> <a href="/access_contact"> <i style="padding: 0 5px;" class="fa fa-address-book"> </i> Contact </a> </li>
+        <li> <a href="/image_gallery"> <i style="padding: 0 5px;" class="fa fa-image"></i> Image Gallery </a> </li>
+    </ul>
+
+
+
+</div>
+
+
+
+
+<div class="main">
+
+    <div class="top-bar">
+        <div class="container">
+            <h6 style="color: rgba(68, 171, 255, 0.692);padding: 10px 20px; float : left; text-transform: uppercase;">
+                Welcome to Hatrya H.H.U high School Admin Panel
+            </h6>
+            <a href="/logout" class="logout-btn " style="float: right; margin-right: 20px;"> <i class="fa fa-sign-out"></i> Logout
+            </a>
+        </div>
+    </div>
+
+
+
+    <div class="container" style="margin-top:75px;">
+
+
+        <div class="card-view">
+
+            <h4 style="color:#00D591;">Create Notice :</h4>
+            <div class="form-group" style="display: flex;">
+                <input type="text" class="form-control" id="notice_title" placeholder="Enter notice title">
+                <input type="date" class="form-control" id="notice_date" style="margin: 0px 10px;"
+                       placeholder="Enter notice date">
+                <input type="text" class="form-control" id="notice_body" placeholder="Enter notice body">
+                <input style="width: 20%; float: left; margin-left: 10px;" onclick="saveNotice()" type="submit"
+                       class="btn btn-primary" value="Save">
+            </div>
+
+            <table class="table table-striped">
+
+                <thead>
+                <tr>
+                    <th>SL No.</th>
+                    <th>Title</th>
+                    <th>Date</th>
+                    <th>Body</th>
+                    <th style='text-align: center'>Edit</th>
+                    <th style='text-align: center'>Delete</th>
+                </tr>
+                </thead>
+
+                <tbody id="noticeTblBody"></tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+
+
+
+
+    <div class="container" style="margin-top:20px;">
+
+
+        <div class="card-view">
+
+            <h4 style="color:#00D591;">Create Event :</h4>
+            <div class="form-group" style="display: flex;">
+                <input type="text" class="form-control" id="event_title" placeholder="Enter event title">
+                <input type="date" class="form-control" id="event_date" style="margin: 0px 10px;"
+                       placeholder="Enter event date">
+                <input type="text" class="form-control" id="event_body" placeholder="Enter event body">
+                <input type="time" class="form-control" id="event_start_time" style="margin: 0px 0px 0px 10px;"
+                       placeholder="Enter event start time">
+
+            </div>
+
+            <div class="form-group" style="display: flex;">
+                <input type="time" class="form-control" id="event_end_time" placeholder="Enter event end time">
+                <input type="text" class="form-control" id="event_location" style="margin: 0px 10px;"
+                       placeholder="Enter event location">
+
+                <select id="event_type" class="form-control">
+                    <option> Select event type </option>
+                    <option>Annual Day Celebration</option>
+                    <option> Sports</option>
+                    <option> Cricket </option>
+                    <option> Football </option>
+
+                </select>
+
+                <input style="width: 20%; float: left; margin-left: 10px;" onclick="saveEvent()" type="submit"
+                       class="btn btn-primary" value="Save">
+            </div>
+
+            <table class="table table-striped">
+
+                <thead>
+                <tr>
+                    <th>SL No.</th>
+                    <th>Title</th>
+                    <th>Date</th>
+                    <th>Body</th>
+                    <th>Start Time</th>
+                    <th>End Time</th>
+                    <th>Location</th>
+                    <th>Type</th>
+                    <th style='text-align: center'>Edit</th>
+                    <th style='text-align: center'>Delete</th>
+                </tr>
+                </thead>
+
+                <tbody id="eventTblBody"> </tbody>
+            </table>
+        </div>
+
+    </div>
+
+
+
+    <div class="container" style="margin-top:20px;">
+
+        <div class="card-view">
+
+            <h4 style="color:#00D591;">Subscriber :</h4>
+            <table class="table table-striped">
+
+                <thead>
+                <th>Select</th>
+                <th>Name</th>
+                <th>Email Address</th>
+                <th>Phone Number</th>
+                <th>Present Address</th>
+                <th style='text-align: center'>Delete</th>
+                </thead>
+
+                <tbody id="subscribeTblBody"></tbody>
+
+            </table>
+
+            <div>
+                <div style="float: left"> <input id="selectAllCb" type="checkbox">
+                    <span>Select all</span>
+                </div>
+                <button style="float: right" data-toggle="modal" data-target="#sendMessageModal" class="btn btn-primary"> Send
+                    Email </button>
+            </div>
+
+
+
+        </div>
+
+
+
+
+    </div>
+
+
+
+
+
+    <!-- Send Message Modal -->
+    <div class="modal fade" id="sendMessageModal" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Send Email</h4>
+                </div>
+                <div class="modal-body">
+
+                    <h5 id="toEmail">To : selected email address</h5>
+                    <input id="sendMessageSubject" type="text" class="form-control" placeholder="Enter subject"  >
+                    <textarea id="sendMessageBody" class="form-control" style="min-height: 150px; margin-top: 15px;"
+                              placeholder="Enter message"></textarea>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="sendEmailTo"  class="btn btn-primary" >Send</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+
+</html>

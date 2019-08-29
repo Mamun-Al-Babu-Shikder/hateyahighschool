@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+
+<head>
+    <title>CPANEL | LIBRARY</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="bootstrap.css">
+    <link rel="stylesheet" href="cpanel_style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="bootstrap.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet'
+        type='text/css'>
+    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
+
+    <script type="text/javascript" charset="utf8"
+        src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+
+
+    <style>
+        .efw {
+            border-color: red;
+        }
+    </style>
+
+
+    <script>
+
+
+
+
+    </script>
+
+
+</head>
+
+<body style="top:0">
+
+
+
+
+
+    <div class="side-menu">
+
+        <div align="center">
+            <img class="logo" src="images/user3.png" />
+            <p style="font-size: 12px ;color: rgb(224, 230, 233); margin: 0px; padding: 0px;"> Hateya H.H.U Higth School
+            </p>
+            <p style="font-size: 12px ;color: rgb(166, 172, 175); margin: 0px; padding: 0px;"> Admin Panel </p>
+        </div>
+
+        <h5
+            style="border-radius: 0;background: #22C5F6; padding-left: 20px; height: 35px; color: #fff; padding-top: 10px;">
+            Option Menu
+        </h5>
+
+
+
+
+        <ul>
+            <li> <a href="/cpanel" > <i class="fa fa-home"> </i> Home </a> </li>
+            <li> <a href="/access_about_us"> <i style="padding: 0 5px;" class="fa fa-info"> </i> About Us </a> </li>
+            <li> <a href="/access_class_data"> <i style="padding: 0 5px;" class="fa fa-graduation-cap"></i> Class
+            </a> </li>
+            <li> <a href="/access_teacher"> <i style="padding: 0 5px;" class="fa fa-users"> </i> Teacher </a> </li>
+            <li> <a class="active-option" href="/access_library"> <i style="padding: 0 5px;" class="fa fa-book"> </i> Library </a> </li>
+            <li> <a href="/access_result"> <i style="padding: 0 5px;" class="fa fa-bar-chart"> </i> Result </a> </li>
+            <li> <a href="/access_contact"> <i style="padding: 0 5px;" class="fa fa-address-book"> </i> Contact </a> </li>
+            <li> <a href="/image_gallery"> <i style="padding: 0 5px;" class="fa fa-image"></i> Image Gallery </a> </li>
+        </ul>
+
+
+
+
+
+    </div>
+
+
+
+
+    <div class="main">
+
+        <div class="top-bar">
+            <div class="container">
+                <h6
+                    style="color: rgba(68, 171, 255, 0.692);padding: 10px 20px; float : left; text-transform: uppercase;">
+                    Welcome to Hatrya H.H.U high School Admin Panel
+                </h6>
+                <a href="/logout" class="logout-btn " style="float: right; margin-right: 20px;"> <i
+                        class="fa fa-sign-out"></i> Logout
+                </a>
+            </div>
+        </div>
+
+
+
+        <script>
+
+            $(document).ready(function () {
+
+                fetchBook();
+
+
+                $("#academicBookSearch").on('keyup', function () {
+                    sv = $(this).val().toLowerCase();
+                    $("#bookTblBody tr").filter(function () {
+                        $(this).toggle($(this).text().toLowerCase().indexOf(sv) > -1);
+                    });
+
+                });
+
+                $("#addNewBookBtn").click(function () {
+
+                    $("#bImage").removeClass('efw');
+                    $("#bPdfFile").removeClass('efw');
+                    $("#bName").removeClass('efw');
+                    $("#bAuthor").removeClass('efw');
+                    $("#bUdate").removeClass('efw');
+
+                    $("#bImage").val('');
+                    $("#bPdfFile").val('');
+                    $("#bName").val('');
+                    $("#bAuthor").val('');
+                    $("#bUdate").val('');
+
+                    saveOrUpdate = 1;
+
+                    $("#modalHeader").text("Add New Book");
+                    $("#addNewBookModal").modal('show');
+
+                });
+
+            });
+
+
+            function fetchBook() {
+
+              //  alert("hi");
+
+                $.post("fetch_library_book", function (data, status) {
+
+                    bookList = Object.values(data);
+
+                    i = 0;
+                    tblRow = "";
+                    for(book of bookList)
+                    {
+
+                        tblRow+= "<tr>";
+                        tblRow+= "<td> "+book["forCls"]+" </td>";
+                        tblRow+= "<td> "+book["name"]+" </td>";
+                        tblRow+= "<td> "+book["author"]+" </td>";
+                        tblRow+= "<td> "+book["uploadDate"]+" </td>";
+                        tblRow+= "<td> "+book["view"]+" </td>";
+                        tblRow+= "<td style='text-align: center'> <button onclick='editBook("+i+")' class='button-edit'>Edit</button>  </td>";
+                        tblRow+= "<td style='text-align: center'> <button onclick='deleteBook("+book["id"]+")' class='button-delete'>Delete</button>  </td>";
+                        tblRow+= "</tr>";
+                        i++;
+                    }
+
+                    $("#bookTblBody").empty();
+                    $("#bookTblBody").append(tblRow);
+
+                });
+
+            }
+
+
+
+
+
+//            function addNewBook() {
+//
+//                saveOrUpdate = 1;
+//                addOrUpdateOperation();
+//            }
+
+            function editBook(v) {
+
+                saveOrUpdate = 2;
+                mdata = bookList[v];
+
+                $("#bImage").val(mdata["imgUrl"]);
+                $("#bPdfFile").val(mdata["pdfLink"]);
+                $("#bName").val(mdata["name"]);
+                $("#bAuthor").val(mdata["author"]);
+                $("#bCls").val(mdata["forCls"]);
+                $("#bUdate").val(mdata["uploadDate"]);
+
+                $("#modalHeader").text("Update Book Information");
+                $("#addNewBookModal").modal('show');
+
+               // addOrUpdateOperation(2);
+            }
+
+            function deleteBook(v) {
+                $.post("delete_library_book",{id: v }, function (data, status) {
+                    if(data){
+                        fetchBook();
+                    }else {
+                        alert("Can't delete. Please try again later.")
+                    }
+                });
+            }
+
+            function addOrUpdateOperation() {
+
+                $("#bImage").removeClass('efw');
+                $("#bPdfFile").removeClass('efw');
+                $("#bName").removeClass('efw');
+                $("#bAuthor").removeClass('efw');
+                $("#bUdate").removeClass('efw');
+
+                bImage = $("#bImage").val();
+                bPdfFile = $("#bPdfFile").val();
+                bName = $("#bName").val();
+                bAuthor = $("#bAuthor").val();
+                bCls = $("#bCls").val();
+                bUdate = $("#bUdate").val();
+
+                if (bImage == '') {
+                    $("#bImage").addClass('efw');
+                } else if (bPdfFile == '') {
+                    $("#bPdfFile").addClass('efw');
+                } else if (bName == '') {
+                    $("#bName").addClass('efw');
+                } else if (bAuthor == '') {
+                    $("#bAuthor").addClass('efw');
+                } else if (bUdate == '') {
+                    $("#bUdate").addClass('efw');
+                } else {
+
+                    $("#addNewBookModal").modal('hide');
+
+                    if (saveOrUpdate == 1) {
+
+                        var book = {
+                            'imgUrl': bImage,
+                            'pdfLink': bPdfFile,
+                            'name': bName,
+                            'author': bAuthor,
+                            'uploadDate': bUdate,
+                            'forCls': bCls,
+                            'view': 0
+                        };
+
+                        $.ajax({
+                            type: "POST",
+                            contentType: 'application/json; charset=utf-8',
+                            dataType: 'json',
+                            url: "save_library_book",
+                            data: JSON.stringify(book), // Note : it is important
+                            success: function (result) {
+                                if (result) {
+                                    fetchBook();
+                                } else {
+                                    alert("Can't save! Please try again.");
+                                }
+                            },
+                            error: function (e) {
+                                alert("Internal error occurred.");
+                            }
+                        });
+
+
+                    }else if(saveOrUpdate==2){
+
+                        var book = {
+                            'id': mdata["id"],
+                            'imgUrl': bImage,
+                            'pdfLink': bPdfFile,
+                            'name': bName,
+                            'author': bAuthor,
+                            'uploadDate': bUdate,
+                            'forCls': bCls,
+                            'view': mdata["view"]
+                        };
+
+                        $.ajax({
+                            type: "POST",
+                            contentType: 'application/json; charset=utf-8',
+                            dataType: 'json',
+                            url: "update_library_book",
+                            data: JSON.stringify(book), // Note : it is important
+                            success: function (result) {
+                                if (result) {
+                                    fetchBook();
+                                } else {
+                                    alert("Can't update! Please try again.");
+                                }
+                            },
+                            error: function (e) {
+                                alert("Internal error occurred.");
+                            }
+                        });
+
+
+                    }
+
+                }
+
+            }
+
+
+
+
+
+
+        </script>
+
+
+
+
+        <!-- Add New Book Modal -->
+        <div class="modal fade" id="addNewBookModal" role="dialog">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 id="modalHeader" class="modal-title">Add New Book</h4>
+                    </div>
+                    <div class="modal-body">
+
+
+                        <div style="display:flex">
+                            <div class="form-group" style="width:100%;">
+                                <label>Image Url:</label>
+                                <input type="url" class="form-control" id="bImage" placeholder="Enter image url">
+                            </div>
+
+                        </div>
+
+                        <div style="display:flex">
+                            <div class="form-group" style="width:100%;">
+                                <label>PDF Url:</label>
+                                <input type="url" class="form-control" id="bPdfFile" placeholder="Enter pdf file url">
+                            </div>
+
+                        </div>
+
+
+
+                        <div style="display:flex">
+                            <div class="form-group" style="width:48%;">
+                                <label>Name:</label>
+                                <input type="text" class="form-control" id="bName" placeholder="Enter name">
+                            </div>
+
+                            <div class="form-group" style="width:48%;  margin-left:4%;">
+                                <label>Author:</label>
+                                <input type="text" class="form-control" id="bAuthor" placeholder="Enter Author">
+                            </div>
+                        </div>
+
+                        <div style="display:flex">
+                            <div class="form-group" style="width:48%; ">
+                                <label>Select type</label>
+                                <select id="bCls" class="form-control">
+                                    <option>Class 6</option>
+                                    <option>Class 7</option>
+                                    <option>Class 8</option>
+                                    <option>Class 9-10</option>
+                                    <option>Popular</option>
+                                </select>
+                            </div>
+                            <div class="form-group" style="width:48%;  margin-left:4%;">
+                                <label>Upload Date:</label>
+                                <input type="date" class="form-control" id="bUdate" placeholder="Enter upload date">
+                            </div>
+                        </div>
+
+
+
+
+                    </div>
+                    <div class="modal-footer">
+                        <!--<button type="button" id="sendSms"  class="btn btn-primary" >Send SMS</button>-->
+                        <button type="button" onclick="addOrUpdateOperation()" class="btn btn-primary">Done</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+
+        <div class="container" style="margin-top:75px;">
+
+
+            <div class="card-view">
+
+                <div>
+                    <button class="btn btn-primary" id="addNewBookBtn" data-toggle="modal"
+                        data-target="#addNewTeacherModal">
+                        Add New Book</button>
+
+                    <input type="text" id="academicBookSearch"
+                        style="float: right;padding:5px 10px;border-radius:2px;border:1px solid #22C5F6; font-size: 13px;"
+                        placeholder="Search here...">
+                </div>
+
+                <table class="table table-striped">
+
+                    <thead>
+                        <tr>
+                            <th>Class</th>
+                            <th>Book Name</th>
+                            <th>Author</th>
+                            <th>Upload Date</th>
+                            <th>View</th>
+                            <th style="text-align: center">Edit</th>
+                            <th style="text-align: center">Delete</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="bookTblBody"></tbody>
+
+                </table>
+
+
+            </div>
+
+
+
+
+
+        </div>
+
+
+    </div>
+
+
+
+
+
+</body>
+
+</html>

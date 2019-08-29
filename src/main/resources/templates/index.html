@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+
+<head>
+  <title> HOME PAGE </title>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="bootstrap.css">
+  <link rel="stylesheet" href="mystyle.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="bootstrap.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+  <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet'
+    type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+  <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet">
+
+
+
+  <script>
+
+    $(document).ready(function () {
+
+      $(".menubtn").click(function () {
+        $(".menu-items").toggle(400);
+      });
+
+    });
+
+    $(document).ready(function () {
+
+      $("#sub-menu").hover(function () {
+
+      });
+
+
+
+
+    });
+
+  </script>
+
+
+
+  <style>
+    .top-feature {
+      border-radius: 1px;
+      padding: 20px 30px;
+      background: #fff;
+      margin: 10px 0px;
+    }
+
+    .top-feature:hover {
+
+      transition: 0.6s;
+      box-shadow: 0px 5px 40px rgba(29, 34, 47, 0.15);
+    }
+
+    .features {
+      margin-top: 50px;
+      width: 100%;
+      height: auto;
+      padding-top: 35px;
+      padding-bottom: 50px;
+    }
+
+    .fea:hover img {
+      transition-duration: 0.8s;
+      -webkit-transition-duration: 0.8s;
+      -moz-transition-duration: 0.8s;
+      -o-transition-duration: 0.8s;
+      transition-duration: 0.8s;
+
+      -webkit-transform: rotate(360deg);
+      transform: rotate(360deg);
+      -moz-transform: rotate(360deg);
+      -o-transform: rotate(360deg);
+      -ms-transform: rotate(360deg);
+    }
+
+    .features-head {
+      text-align: center;
+      color: #fff
+    }
+
+    .features-text {
+      text-align: justify;
+
+      font-size: 14px;
+      color: #ffffff5d;
+      font-family: none !important;
+    }
+
+
+    .mapouter {
+      position: relative;
+      text-align: right;
+      height: 500px;
+      width: 600px;
+    }
+
+    .gmap_canvas {
+      overflow: hidden;
+      background: none !important;
+      height: 500px;
+      width: 100%;
+    }
+
+    .subscribe_left {
+      /* background: url('images/tile01.png') repeat transparent; */
+      height: auto;
+    }
+
+    .subscribe_right {
+      /* background-image: url("images/map-image.png");
+      background-color: #212529; */
+      /* background: url('images/tile01.png') repeat transparent; */
+      padding: 45px 20px;
+      height: auto;
+
+    }
+
+    .subscribe_right>form>h5 {
+      color: rgb(17, 16, 16);
+    }
+
+    .subscribe_right>form>div>.form-control {
+
+      padding: 20px 10px;
+      -webkit-box-shadow: none;
+      box-shadow: none;
+
+    }
+
+    .subscribe_right>form>div>.form-control:focus {
+      border: 1.2px solid #43449F;
+      -webkit-box-shadow: none;
+      box-shadow: none;
+    }
+
+    .btn-subscribe {
+      font-size: 15px;
+      padding: 10px 20px;
+      background-color: #43449F;
+      border-color: #43449F;
+      color: #fff;
+      box-shadow: 0px 3px 10px rgba(57, 58, 73, 0.459);
+    }
+
+    .btn-subscribe:hover {
+      background-color: rgb(63, 65, 144);
+      border-color: rgb(63, 65, 144);
+      color: white;
+      box-shadow: 0px 5px 15px rgba(57, 58, 73, 0.459);
+      outline: none !important;
+    }
+  </style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body>
+
+
+
+
+
+
+
+
+  <nav id="home-id" class="navbar navbar-default navbar-fixed-top">
+
+    <div class="container-fluid">
+
+      <!-- BRAND -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#alignment-example"
+          aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <p class="navbar-brand"
+          style="margin: 0px;  color: #fed136;
+        font-family: 'Kaushan Script', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; ">
+          Hateya H.H.U high school</p>
+      </div>
+      <!-- COLLAPSIBLE NAVBAR -->
+      <div class="collapse navbar-collapse " id="alignment-example">
+        <!-- Links -->
+        <ul class="nav navbar-nav navbar-right">
+          <li><a class="active-opt" href="/">HOME</a></li>
+          <li><a href="/about">ABOUT</a></li>
+          <li class="dropdown"><a class="dropdown-toggle " data-toggle="dropdown" > CLASSES <span
+                class="caret"></span></a>
+            <ul class="dropdown-menu ">
+              <li><a href="/class-6">CLASS-6</a></li>
+              <li><a href="/class-7">CLASS-7</a></li>
+              <li><a href="/class-8">CLASS-8</a></li>
+              <li><a href="class-9">CLASS-9</a></li>
+              <li><a href="/class-10">CLASS-10</a></li>
+            </ul>
+          </li>
+          <li><a href="/teacher">TEACHER</a></li>
+          <li><a href="/library">LIBRARY</a></li>
+          <li><a href="/result">RESULT</a></li>
+          <li><a href="/contact">CONTACT</a></li>
+        </ul>
+
+      </div>
+
+    </div>
+  </nav>
+
+
+
+
+
+
+  <!--th:style="'background: url(images/bk1.PNG) ; background-size: cover'"-->
+  <div class="banner-div"th:style="'background: url(images/bk1.PNG) ; background-size: cover'">
+    <div align="center" class="banner-overlay ">
+      <h1 style="margin-top: 200px; color: #fff;"> WELCOME TO</h1>
+      <h1 style="color: #fff;"> HATEYA H.H.U HIGH SCHOOL </h1>
+      <p style="color: #fff; padding: 0px 50px 0px 50px;"> An academic institute located at Hateya Sakhipur, Tangail.
+        Established in 01 Jan, 1964. EIIN : 114596</p>
+      <form action="photo_gallery.html">
+        <button onclick="window.location.href='photo_gallery.html'" class="tour-btn" type="button">PHOTO
+          GALLERY</button>
+      </form>
+    </div>
+  </div>
+
+  <br>
+
+
+  <div class="container" style="margin-top:20px;">
+
+    <div class="row">
+
+      <div class="col-sm-6 col-xs-12 col-md-3">
+        <div class="top-feature text-center">
+          <img src="images/icon_1.png">
+          <h3 style="font-family: 'Roboto Slab', serif;">The Experts</h3>
+          <div class="feature_text">
+            <p>Always try to build your mind to be expert to reach your expected goal.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-6 col-xs-12 col-md-3">
+        <div class="top-feature text-center">
+          <img src="images/icon_2.png">
+          <h3 style="font-family: 'Roboto Slab', serif;">Book & Library</h3>
+          <div class="feature_text">
+            <p>Remember that book and library always a best friend of a student.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-6 col-xs-12 col-md-3">
+        <div class="top-feature text-center">
+          <img src="images/icon_3.png">
+          <h3 style="font-family: 'Roboto Slab', serif;">Practice More</h3>
+          <div class="feature_text">
+            <p>If you want to be a master of specific subject, You should Practice more and more.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-6 col-xs-12 col-md-3">
+        <div class="top-feature text-center">
+          <img src="images/icon_4.png">
+          <h3 style="font-family: 'Roboto Slab', serif;">Award & Reward</h3>
+          <div class="feature_text">
+            <p>Try to Reward yourself for your great success that will help you to go a long way.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+
+
+  <div class="features" th:style="'background: url(images/tile01.png) repeat transparent;'">
+
+    <div class="container">
+
+      <h3 style="text-align: center; color:rgba(255, 255, 255, 0.904); text-transform: uppercase;">
+        Check Out This Awesome Features
+      </h3>
+
+      <h5 style="text-align: center; color:#ffffff5d">
+        Let's try to review our features
+      </h5>
+
+      <div class="row" style="margin-top: 20px">
+
+        <div align="center" style="margin-top:25px" class="col-xs-6 col-md-3 fea">
+
+          <img src="images/clock.png">
+          <h5 class="features-head">STUDY AT YOUR TIME</h5>
+          <p class="features-text">
+            Most students start out each new semester of school with high expectations. They envision themselves being
+            successful in their studies and school work but they fail to put together a realistic plan, or establish a
+            routine, that will enable them to achieve academic success.
+          </p>
+
+
+        </div>
+
+        <div align="center" style="margin-top:25px" class="col-xs-6 col-md-3 fea">
+
+          <img src="images/check_out.png">
+          <h5 class="features-head">FROM ANYWHERE YOU WANT</h5>
+          <p class="features-text">
+            Students who study online can benefit from the convenience of studying from anywhere with an internet
+            connection. Some subjects are more suited to study online than others. For this we have create a section by
+            which we can serve online courses.
+          </p>
+
+
+        </div>
+
+
+        <div align="center" style="margin-top:25px" class="col-xs-6 col-md-3 fea">
+
+          <img src="images/video_tutorial.png">
+          <h5 class="features-head">VIDEO TUTORIALS</h5>
+          <p class="features-text">
+            Video tutorials, whether recorded or live, are important to students because they add another dimension to
+            learning that makes a student's educational experience more effective. The videos allow a classroom setting
+            to come to life.
+          </p>
+        </div>
+
+        <div align="center" style="margin-top:25px" class="col-xs-6 col-md-3 fea">
+
+          <img src="images/comment.png">
+          <h5 class="features-head">COMMUNICATION SKILLS</h5>
+          <p class="features-text">
+            Communication is the heart of every organisation. Everything you do in the workplace results from
+            communication. Therefore good reading, writing, speaking and listening skills are essential if tasks are
+            going to be completed and goals achieved.
+          </p>
+        </div>
+
+        <div align="center" style="margin-top:25px" class="col-xs-6 col-md-3 fea">
+
+          <img src="images/class_organization.png">
+          <h5 class="features-head">EXTRA CLASS SUPPORT</h5>
+          <p class="features-text">
+
+            Each student is different; they have their own thinking capacities and a different way of interpreting
+            information. Some students understand the concepts at one go but some don’t. So we have started support
+            extra class and it is very helpfull for them.
+          </p>
+        </div>
+
+        <div align="center" style="margin-top:25px" class="col-xs-6 col-md-3 fea">
+
+          <img src="images/user.png">
+          <h5 class="features-head">STUDENT FOCUS COURSES</h5>
+          <p class="features-text">
+            Every student are not interested at same course. It is a normal fact that they have a specific goal and they
+            want to achieve it for their mental satisfaction. As a result we take a extra care about their focused
+            course. It always put forward a step to their goal.
+          </p>
+
+
+        </div>
+
+
+        <div align="center" style="margin-top:25px" class="col-xs-6 col-md-3 fea">
+
+          <img src="images/email.png">
+          <h5 class="features-head">GET THE NEWS BY EMAIL</h5>
+          <p class="features-text">
+            Every kind of academic news we have sent by email to the students and their guardian. So that they can
+            conscious about your activities. And we also received their instructions by it. We believe that it is a
+            great way to improve our education system.
+          </p>
+
+
+        </div>
+
+        <div align="center" style="margin-top:25px" class="col-xs-6 col-md-3 fea">
+
+          <img src="images/certificate.png">
+          <h5 class="features-head">CLASS LECTURE & DOCUMENT </h5>
+          <p class="features-text">
+            We also provide every kind of academic book, syllabus, class routine, exam routine, result, class lecture
+            sheet and another important document to our student by our web service. By which student get a extra online
+            care from us. It is a great achieve for us.
+          </p>
+
+
+        </div>
+
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <style>
+    .notice-board {
+      padding: 30px 0px;
+      height: auto;
+
+    }
+
+    .notice-content {
+
+      margin: 20px 10px;
+      padding: 10px 20px;
+      background: #fff;
+      box-shadow: 0px 5px 20px rgba(190, 188, 188, 0.418);
+      border-radius: 5px;
+      border-left: 3px solid #14bdee;
+      border-right: 3px solid #14bdee;
+    }
+
+    .notice-content:hover {
+
+      border-left: 3px solid #0cdb8c;
+      border-right: 3px solid #0cdb8c;
+      transition: 0.5s;
+    }
+
+
+
+
+    .notice-content>h3 {
+      margin: 0px;
+      padding: 5px 10px;
+      font-size: 20px;
+      font-weight: 600;
+      font-family: 'Roboto Slab', serif;
+      color: #384158;
+    }
+
+    .notice-date {
+
+      font-size: 12px;
+
+      padding: 0px 10px;
+      color: #14bdee;
+
+
+    }
+  </style>
+
+
+
+  <div class="notice-board" th:style="'background-image: url(images/bg3.jpg)'">
+
+    <div class="container" style="padding-top: 0px; height: 70px;">
+      <center>
+        <h2 class=" header-text"> Notice Board </h2>
+        <p> Current notice is here.</p>
+      </center>
+    </div>
+
+
+    <div class="container" style="margin-top:40px;">
+
+      <div class="row">
+
+        <div th:each="notice,i : ${noticeList}">
+
+        <div th:if="${i.index<2}" class="col-md-6 col-xs-12">
+
+          <div class="notice-content">
+            <h3 th:text="${notice.getTitle()}"></h3>
+            <p class="notice-date"> <i class="fa fa-clock-o"></i> <span th:text="${notice.getDate()}"/> </p>
+            <p th:text="${notice.getBody()}"> </p>
+          </div>
+
+        </div>
+
+        </div>
+
+
+
+        <!--<div class="col-md-6 col-xs-12">-->
+
+          <!--<div class="notice-content">-->
+            <!--<h3>Notice Title Here</h3>-->
+            <!--<p class="notice-date"> <i class="fa fa-clock-o"></i>12-AUG-2019 01:37 PM</p>-->
+            <!--<p>-->
+              <!--Etiam nec odio vestibulum est mattis effic iturut magna. Pellentesque sit amet tellus blandit. Etiam nec odio vestibulum est mattis effic iturut magna. Pellentesque sit am et tellus blandit. Etiam nec odio vestibul. Etiam nec odio vestibulum est mat tis effic iturut magna.-->
+            <!--</p>-->
+          <!--</div>-->
+        <!--</div>-->
+
+
+      </div>
+
+    </div>
+
+
+
+
+
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+  <style>
+    .event {
+      margin: 30px 20px;
+    }
+
+    .event:hover .event-date {
+      transition: 1s;
+      background: #14bdee;
+    }
+
+    .event:hover .event-date>h3,
+    .event:hover .event-date>p {
+      color: #fff;
+    }
+
+    .event-img {
+      width: 100%;
+      height: auto;
+      border-radius: 5px;
+
+
+    }
+
+    .event-body {
+      padding: 30px 0px;
+      display: flex;
+    }
+
+    .event-date {
+      padding: 7px 0px;
+      min-width: 60px;
+      height: 60px;
+      box-shadow: 0px 1px 10px rgba(29, 34, 47, 0.1);
+      float: left;
+      text-align: center;
+      background: #fff;
+
+    }
+
+    .event-date>h3 {
+      margin: 0px;
+      padding: 0px;
+      font-weight: 600;
+      color: #14bdee;
+    }
+
+
+    .event-date>p {
+      font-family: 'Roboto Slab', serif;
+      font-size: 14px;
+      color: #14bdee;
+      font-weight: 400;
+      line-height: 0.75;
+      margin-top: 9px;
+    }
+
+    .event-content {
+      margin-left: 20px;
+      float: left;
+    }
+
+    .event-content a {
+      font-family: 'Roboto Slab', serif;
+      font-size: 20px;
+      font-weight: 700;
+      color: #384158;
+      text-decoration: none;
+      transition: 150ms;
+
+    }
+
+    .event-content a:hover {
+      color: #14bdee;
+      text-decoration: none;
+    }
+
+
+    .event_info_container {
+      display: flex;
+    }
+
+    .event_info {
+      padding: 5px 10px 5px 0px;
+      font-size: 12px;
+
+      float: left;
+      color: #14bdee;
+    }
+  </style>
+
+
+
+
+
+
+  <div class="container" style="margin-top: 30px; height: 70px;;">
+    <center>
+      <h2 class="header-text"> Upcoming Events </h2>
+      <p> Let's try to know about our next events with time and venu.</p>
+    </center>
+
+  </div>
+
+  <div class="container" style="margin-top: 30px;">
+
+    <div class="row" >
+
+        <div th:each="event,i : ${eventList}">
+
+            <div th:if="${i.index<4}">
+
+                <div class="col-md-3 col-sm-6 col-xs-12 ">
+                    <div class="event">
+                        <img class="event-img" th:src="${event.getImgName()}">
+                        <div class="event-body">
+                            <div class="event-date">
+                                <h3 th:text="${event.getDd()}"></h3>
+                                <p th:text="${event.getMm()}"></p>
+                            </div>
+                            <div class="event-content">
+                                <a  class="event-title"><span th:text="${event.getTitle()}"></span></a>
+                                <div class="event_info_container">
+                                    <div class="event_info"><i class="fa fa-clock-o"></i>
+                                        <span th:text="${event.getTimeFrom()}"></span> - <span th:text="${event.getTimeTo()}"></span>
+                                    </div>
+                                    <div class="event_info"><i class="fa fa-map-marker"></i>
+                                        <span th:text="${event.getLocation()}"></span>
+                                    </div>
+                                </div>
+                                <div class="event_text">
+                                    <p th:text="${event.getBody()}"></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+
+
+  </div>
+
+
+
+
+
+
+
+
+
+  <div class="container" style="margin-top: 10px; height: 70px;;">
+    <center>
+      <h2 class="text-uppercase2 header-text"> Location </h2>
+    </center>
+  </div>
+
+
+
+
+
+  <!--Google Map-->
+  <div style="background-color: #F2F5F9;">
+    <div class="gmap_canvas mapouter">
+      <iframe width="100%" height="500" id="gmap_canvas"
+              src="https://maps.google.com/maps?q=hateya%20h.h.u%20high%20school&t=&z=17&ie=UTF8&iwloc=&output=embed"
+              frameborder="0" scrolling="no" marginheight="0" marginwidth="0">
+      </iframe>
+    </div>
+  </div>
+
+
+
+
+
+
+  <div class="container">
+
+    <div class="row">
+
+      <div class="col-sm-8 subscribe_left">
+        <img style="margin-top: 15px;" src="images/subscribe_bk.svg" class="img img-responsive" />
+      </div>
+
+      <div class="col-sm-4 subscribe_right">
+
+        <form action="subscribe" method="post">
+
+
+          <div class="form-group">
+            <input class="form-control" name="name" type="text" placeholder="Your Name *" required="true">
+          </div>
+
+          <div class="form-group">
+            <input class="form-control" name="email" type="email" placeholder="Your Email Address *" required="true">
+          </div>
+
+          <div class="form-group">
+            <input class="form-control" name="phone" type="number" placeholder="Your Phone number *" required="true">
+          </div>
+
+          <div class="form-group">
+            <input class="form-control" name="address" type="address" placeholder="Your Present Address *"
+                   required="true">
+          </div>
+          <button id="sendMessageButton" class="btn btn-subscribe text-uppercase" type="submit">
+            SUBSCRIBE
+          </button>
+        </form>
+      </div>
+    </div>
+
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <!--fotter-->
+  <footer>
+    <div class="footer-area">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4 col-sm-4 col-xs-12">
+            <div class="footer-content">
+              <div class="footer-head">
+                <div class="footer-logo">
+                  <h4>Social media</h4>
+                </div>
+
+                <p>
+                  You can connect with us by social media like facebook, twitter, etc. To connect with
+                  us by social
+                  media please visite the following link.
+
+
+                </p>
+                <div class="footer-icons">
+                  <ul>
+                    <li>
+                      <a th:href="${footer_social_media_facebook}" target="_blank"><i class="fa fa-facebook"></i></a>
+                    </li>
+                    <li>
+                      <a th:href="${footer_social_media_twitter}" target="_blank"><i class="fa fa-twitter"></i></a>
+                    </li>
+                    <li>
+                      <a th:href="${footer_social_media_linkedin}" target="_blank"><i class="fa fa-linkedin"></i></a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- end single footer -->
+          <div class="col-md-4 col-sm-4 col-xs-12">
+            <div class="footer-content">
+              <div class="footer-head">
+                <h4>Information</h4>
+                <p>
+                  To more know about our school, you can contract with following mobile number or
+                  email.
+                </p>
+                <div class="footer-contacts">
+                  <p ><span>Tel:</span> <u th:text="${footer_information_tel}"></u> </p>
+                  <p ><span>Email:</span> <u th:text="${footer_information_email}"></u> </p>
+                  <p><span>Working Hours:</span> 9am-5pm</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- end single footer -->
+          <div class="col-md-4 col-sm-4 col-xs-12">
+            <div class="footer-content">
+              <div class="footer-head">
+                <h4>Photo gallery</h4>
+                <div class="flicker-img">
+
+                  <div class="raw">
+
+                    <div class="col-xs-4">
+                      <a href="photo_gallery.html"> <img style="cursor:pointer"
+                                                         class="img-thumbnail" src="images/portfolio/1.jpg" alt=""> </a>
+                    </div>
+                    <div class="col-xs-4">
+                      <a href="photo_gallery.html"> <img class="img-thumbnail"
+                                                         src="images/portfolio/2.jpg" alt=""> </a>
+                    </div>
+                    <div class="col-xs-4">
+                      <a href="photo_gallery.html"> <img class="img-thumbnail"
+                                                         src="images/portfolio/3.jpg" alt=""> </a>
+                    </div>
+
+                    <div class="col-xs-4">
+                      <a href="photo_gallery.html"> <img class="img-thumbnail"
+                                                         src="images/portfolio/4.jpg" alt=""> </a>
+                    </div>
+                    <div class="col-xs-4">
+                      <a href="photo_gallery.html"> <img class="img-thumbnail"
+                                                         src="images/portfolio/5.jpg" alt=""> </a>
+                    </div>
+                    <div class="col-xs-4">
+                      <a href="photo_gallery.html"> <img class="img-thumbnail"
+                                                         src="images/portfolio/6.jpg" alt=""> </a>
+                    </div>
+
+                  </div>
+
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-area-bottom">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="copyright text-center">
+              <p>
+                &copy; Copyright <strong>Hateya H.H.U High School</strong>. All Rights Reserved
+              </p>
+            </div>
+            <div class="credits">
+              Developed by <a href="https://bootstrapmade.com/">Abdullah-Al-Mamun</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+
+
+
+
+
+</body>
+
+</html>

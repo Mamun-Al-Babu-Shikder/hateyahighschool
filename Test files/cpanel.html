@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+
+<head>
+  <title>CPANEL | HOME</title>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="bootstrap.css">
+  <link rel="stylesheet" href="cpanel_style.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="bootstrap.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+  <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet'
+    type='text/css'>
+  <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
+
+  <script type="text/javascript" charset="utf8"
+    src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+
+
+  <style>
+    .efw {
+      border-color: red;
+    }
+  </style>
+
+
+  <script>
+
+
+
+
+    $(document).ready(function () {
+      $('#myTable').DataTable();
+
+    });
+
+
+    function saveNotice() {
+
+      $("#notice_title").removeClass("efw");
+      $("#notice_date").removeClass("efw");
+      $("#notice_body").removeClass("efw");
+
+      noticeTitle = $("#notice_title").val();
+      noticeDate = $("#notice_date").val();
+      noticeBody = $("#notice_body").val();
+
+      if (noticeTitle == '') {
+        $("#notice_title").addClass("efw");
+      } else if (noticeDate == '') {
+        $("#notice_date").addClass("efw");
+      } else if (noticeBody == '') {
+        $("#notice_body").addClass("efw");
+      } else {
+
+
+        alert(noticeTitle + " , " + noticeDate + ", " + noticeBody);
+
+      }
+
+    }
+
+
+
+    function saveEvent() {
+      $("#event_title").removeClass("efw");
+      $("#event_date").removeClass("efw");
+      $("#event_body").removeClass("efw");
+      $("#event_start_time").removeClass("efw");
+      $("#event_end_time").removeClass("efw");
+      $("#event_location").removeClass("efw");
+      $("#event_type").removeClass("efw");
+
+      eventTitle = $("#event_title").val();
+      eventDate = $("#event_date").val();
+      eventBody = $("#event_body").val();
+      eventStartTime = $("#event_start_time").val();
+      eventEndTime = $("#event_end_time").val();
+      eventLocation = $("#event_location").val();
+      eventType = $("#event_type").val();
+
+
+
+      if (eventTitle == '') {
+        $("#event_title").addClass("efw");
+      } else if (eventDate == '') {
+        $("#event_date").addClass("efw");
+      } else if (eventBody == '') {
+        $("#event_body").addClass("efw");
+      } else if (eventStartTime == '') {
+        $("#event_start_time").addClass("efw");
+      } else if (eventEndTime == '') {
+        $("#event_end_time").addClass("efw");
+      } else if (eventLocation == '') {
+        $("#event_location").addClass("efw");
+      } else if (eventType == 'Select event type') {
+        $("#event_type").addClass("efw");
+      } else {
+        alert("Ok " + eventType);
+      }
+
+
+
+
+
+    }
+
+
+
+
+
+  </script>
+
+
+</head>
+
+<body style="top:0">
+
+
+
+
+
+  <div class="side-menu">
+
+    <div align="center">
+      <img class="logo" src="images/user3.png" />
+      <p style="font-size: 12px ;color: rgb(224, 230, 233); margin: 0px; padding: 0px;"> Hateya H.H.U Higth School
+      </p>
+      <p style="font-size: 12px ;color: rgb(166, 172, 175); margin: 0px; padding: 0px;"> Admin Panel </p>
+    </div>
+
+    <h5 style="border-radius: 0;background: #22C5F6; padding-left: 20px; height: 35px; color: #fff; padding-top: 10px;">
+      Option Menu
+    </h5>
+
+
+    <ul>
+      <li> <a class="active-option" href="cpanel.html"> <i class="fa fa-home"> </i> Home </a> </li>
+      <li> <a href="#"> <i style="padding: 0 5px;" class="fa fa-info"> </i> About Us </a> </li>
+      <li> <a href="cpanel_class.html"> <i style="padding: 0 5px;" class="fa fa-graduation-cap"></i> Class
+        </a> </li>
+      <li> <a href="#"> <i style="padding: 0 5px;" class="fa fa-users"> </i> Staff </a> </li>
+      <li> <a href="#"> <i style="padding: 0 5px;" class="fa fa-book"> </i> Library </a> </li>
+      <li> <a href="#"> <i style="padding: 0 5px;" class="fa fa-bar-chart"> </i> Result </a> </li>
+      <li> <a href="cpanel_contact.html"> <i style="padding: 0 5px;" class="fa fa-address-book"> </i> Contact </a> </li>
+      <li> <a href="#"> <i style="padding: 0 5px;" class="fa fa-image"></i> Image Gallery </a> </li>
+
+    </ul>
+
+
+
+  </div>
+
+
+
+
+  <div class="main">
+
+    <div class="top-bar">
+      <div class="container">
+        <h6 style="color: rgba(68, 171, 255, 0.692);padding: 10px 20px; float : left; text-transform: uppercase;">
+          Welcome to Hatrya H.H.U high School Admin Panel
+        </h6>
+        <a href="#" class="logout-btn " style="float: right; margin-right: 20px;"> <i class="fa fa-sign-out"></i> Logout
+        </a>
+      </div>
+    </div>
+
+
+
+    <div class="container" style="margin-top:75px;">
+
+
+      <div class="card-view">
+
+        <h4 style="color:#00D591;">Create Notice :</h4>
+        <div class="form-group" style="display: flex;">
+          <input type="text" class="form-control" id="notice_title" placeholder="Enter notice title">
+          <input type="date" class="form-control" id="notice_date" style="margin: 0px 10px;"
+            placeholder="Enter notice date">
+          <input type="text" class="form-control" id="notice_body" placeholder="Enter notice body">
+          <input style="width: 20%; float: left; margin-left: 10px;" onclick="saveNotice()" type="submit"
+            class="btn btn-primary" value="Save">
+        </div>
+
+        <table class="table table-striped">
+
+          <thead>
+            <tr>
+              <th>SL No.</th>
+              <th>Title</th>
+              <th>Date</th>
+              <th>Body</th>
+              <th>Edit</th>
+              <th>Delete</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr>
+              <td>01</td>
+              <td>Notice Title</td>
+              <td>02-03-2019</td>
+              <td>Notice body is here..... </td>
+              <td style="text-align: center">
+                <input type="button" class="button-edit" value="   Edit   " />
+              </td>
+              <td style="text-align: center">
+                <input type="button" class="button-delete" value="Delete" />
+              </td>
+
+            </tr>
+
+          </tbody>
+
+
+        </table>
+
+      </div>
+
+
+
+    </div>
+
+
+
+
+
+    <div class="container" style="margin-top:20px;">
+
+
+      <div class="card-view">
+
+        <h4 style="color:#00D591;">Create Event :</h4>
+        <div class="form-group" style="display: flex;">
+          <input type="text" class="form-control" id="event_title" placeholder="Enter event title">
+          <input type="date" class="form-control" id="event_date" style="margin: 0px 10px;"
+            placeholder="Enter event date">
+          <input type="text" class="form-control" id="event_body" placeholder="Enter event body">
+          <input type="time" class="form-control" id="event_start_time" style="margin: 0px 0px 0px 10px;"
+            placeholder="Enter event start time">
+
+        </div>
+
+        <div class="form-group" style="display: flex;">
+          <input type="time" class="form-control" id="event_end_time" placeholder="Enter event end time">
+          <input type="text" class="form-control" id="event_location" style="margin: 0px 10px;"
+            placeholder="Enter event location">
+
+          <select id="event_type" class="form-control">
+            <option> Select event type </option>
+            <option> Sports</option>
+            <option> Cricket </option>
+            <option> Football </option>
+          </select>
+
+          <input style="width: 20%; float: left; margin-left: 10px;" onclick="saveEvent()" type="submit"
+            class="btn btn-primary" value="Save">
+        </div>
+
+        <table class="table table-striped">
+
+          <thead>
+            <tr>
+              <th>SL No.</th>
+              <th>Title</th>
+              <th>Date</th>
+              <th>Body</th>
+              <th>Start Time</th>
+              <th>End Time</th>
+              <th>Location</th>
+              <th>Type</th>
+              <th>Edit</th>
+              <th>Delete</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr>
+              <td>01</td>
+              <td>Event Title</td>
+              <td>02-03-2019</td>
+              <td>Event body is here..... </td>
+              <td>10:00 AM</td>
+              <td>05:00 PM</td>
+              <td>School Playground</td>
+              <td>sports</td>
+              <td style="text-align: center">
+                <input type="button" class="button-edit" value="   Edit   " />
+              </td>
+              <td style="text-align: center">
+                <input type="button" class="button-delete" value="Delete" />
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+
+
+
+    <div class="container" style="margin-top:20px;">
+
+      <div class="card-view">
+
+        <h4 style="color:#00D591;">Subscriber :</h4>
+        <table class="table table-striped">
+
+          <thead>
+            <th>Name</th>
+            <th>Email Address</th>
+            <th>Phone Number</th>
+            <th>Present Address</th>
+          </thead>
+
+          <tbody>
+            <td>Abdullah-Al-Mamun</td>
+            <td>aalmamun295@gmail.com</td>
+            <td>01626311400</td>
+            <td>Dhamrai, Dhaka</td>
+          </tbody>
+
+
+
+        </table>
+
+
+      </div>
+
+
+    </div>
+
+
+
+
+
+
+
+
+
+    <div class="container" style="margin-top:20px;">
+
+      <div class="card-view">
+
+        <h4 style="color:#00D591;">Subscriber :</h4>
+        <table class="table table-striped">
+
+          <thead>
+            <th>Select</th>
+            <th>Name</th>
+            <th>Email Address</th>
+            <th>Phone Number</th>
+            <th>Present Address</th>
+            <th style='text-align: center'>Delete</th>
+          </thead>
+
+          <tbody id="subscribeTblBody"></tbody>
+
+        </table>
+
+        <div>
+          <div style="float: left"> <input type="checkbox">
+            <span>Select all</span>
+          </div>
+          <button style="float: right" data-toggle="modal" data-target="#sendMessageModal" class="btn btn-primary"> Send
+            Email </button>
+        </div>
+
+
+      </div>
+
+
+
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+
+</html>

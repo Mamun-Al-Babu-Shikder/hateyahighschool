@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+
+<head>
+    <title>Bootstrap Example</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="bootstrap.css">
+    <link rel="stylesheet" href="mystyle.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="bootstrap.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet'
+        type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
+
+    <script type="text/javascript" charset="utf8"
+        src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+
+
+
+
+
+
+    <style>
+        a {
+            font-family: 'Roboto Slab', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+
+        }
+
+
+        #myTable thead td {
+            padding: 10px 8px;
+            border-bottom: 1px solid rgb(255, 49, 49);
+        }
+    </style>
+
+    <script>
+
+
+        $(document).ready(function () {
+           // alert("DataTable implementation");
+            $('#myTable').DataTable();
+        });
+
+
+
+
+        $(document).ready(function () {
+            $("#myModal").on("hidden.bs.modal", function () {
+                $("#iframeYoutube").attr("src", "#");
+            })
+        })
+
+        function changeVideo(vId) {
+            var iframe = document.getElementById("iframeYoutube");
+            iframe.src = "https://www.youtube.com/embed/" + vId;
+
+            $("#myModal").modal("show");
+        }
+    </script>
+
+
+
+</head>
+
+<body>
+
+
+
+    <nav id="home-id" class="navbar navbar-default navbar-fixed-top">
+
+        <div class="container-fluid">
+
+            <!-- BRAND -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#alignment-example" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <p class="navbar-brand"
+                    style="margin: 0px;  color: #fed136;
+        font-family: 'Kaushan Script', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; ">
+                    Hateya H.H.U high school</p>
+            </div>
+            <!-- COLLAPSIBLE NAVBAR -->
+            <div class="collapse navbar-collapse " id="alignment-example">
+                <!-- Links -->
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="index.html">HOME</a></li>
+                    <li><a href="about.html">ABOUT</a></li>
+                    <li class="dropdown"><a class="dropdown-toggle active-opt" data-toggle="dropdown"> CLASSES
+                            <span class="caret"></span></a>
+                        <ul class="dropdown-menu ">
+                            <li><a class="active-opt" href="#">CLASS-6</a></li>
+                            <li><a href="#">CLASS-7</a></li>
+                            <li><a href="#">CLASS-8</a></li>
+                            <li><a href="#">CLASS-9</a></li>
+                            <li><a href="#">CLASS-10</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">STAFF</a></li>
+                    <li><a href="#">LIBRARY</a></li>
+                    <li><a href="#">RESULT</a></li>
+                    <li><a href="contract.html">CONTACT</a></li>
+                </ul>
+
+            </div>
+
+        </div>
+    </nav>
+
+
+
+    <div class="about-banner" align="center">
+        <div class="about-banner-over">
+            <h1 style="padding-top: 80px; color: #fff;"> CLASS - 6 </h1>
+            <p style="padding-top: 8px; color: #fff;"> LET'S TRY TO KNOW ABOUY CLASS - 6 OF 'HATEYA H.H.U HIGH SCHOOL'.
+            </p>
+        </div>
+    </div>
+
+
+
+
+
+    <!--Main body-->
+    <div class="container" style="margin-top: 50px;">
+
+        <div class="row">
+
+            <div class="col-sm-8">
+
+                <div style="margin-top: 0px; height: 40px;;">
+                    <center>
+                        <h3 class="text-uppercase header-text"> BOOK REFERENCE </h3>
+                    </center>
+                </div>
+
+
+                <h4>চলতি শিক্ষাবর্ষের মাধ্যমিক স্তরের ষষ্ঠ শ্রেণির বইয়ের পাঠ্যপুস্তক :</h4>
+                <table id="myTable" class="table table-striped table-bordered" >
+                    <thead>
+
+
+                        <tr>
+                            <th>
+                                SL NO.
+                            </th>
+                            <th>
+                                Name of book
+                            </th>
+                            <th style="text-align: center;">
+                                PDF file
+                            </th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+
+
+                        <tr>
+                            <td>
+                                01
+                            </td>
+                            <td>
+                                আনন্দ পাঠ(বাংলা দ্রুত পঠন)
+                            </td>
+                            <td style="text-align: center;">
+                                <a href="#"><img src="images/pdf.png"></a>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                02
+                            </td>
+                            <td>
+                                English for Today
+                            </td>
+                            <td style="text-align: center;">
+                                <a href="#"><img src="images/pdf.png"></a>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                03
+                            </td>
+                            <td>
+                                গণিত
+                            </td>
+                            <td style="text-align: center;">
+                                <a href="#"><img src="images/pdf.png"></a>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                04
+                            </td>
+                            <td>
+                                বাংলা ব্যাকরণ ও নির্মিতি
+                            </td>
+                            <td style="text-align: center;">
+                                <a href="#"><img src="images/pdf.png"></a>
+                            </td>
+                        </tr>
+                    </tbody>
+
+                </table>
+
+
+
+                <div style="margin-top: 50px; height: 40px;;">
+                    <center>
+                        <h3 class="text-uppercase header-text"> CLASS ROUTINE </h3>
+                    </center>
+                </div>
+
+
+
+                <table class="table table-bordered">
+
+                    <tr>
+                        <th>Day/Hour</th>
+                        <th style="text-align: center;">1st</th>
+                        <th style="text-align: center;">2nd</th>
+                        <th style="text-align: center;">3rd</th>
+                        <th style="text-align: center;">4th</th>
+                        <th style="text-align: center;">5th</th>
+                        <th style="text-align: center;">6th</th>
+
+                    </tr>
+
+                    <tr>
+                        <td style="text-align: center">
+                            <strong>SAT</strong>
+                        </td>
+                        <td>
+                            আনন্দ পাঠ(বাংলা দ্রুত পঠন)
+                        </td>
+                        <td>
+                            গণিত
+                        </td>
+                        <td>
+                            English for Today
+                        </td>
+                        <td>
+                            বাংলা ব্যাকরণ ও নির্মিতি
+                        </td>
+                        <td>
+                            আনন্দ পাঠ(বাংলা দ্রুত পঠন)
+                        </td>
+                        <td>
+                            গণিত
+                        </td>
+
+                    </tr>
+
+
+
+
+                </table>
+
+
+
+
+
+                <div style="margin-top: 50px; height: 40px;;">
+                    <center>
+                        <h3 class="text-uppercase header-text"> EXAM ROUTINE </h3>
+                    </center>
+                </div>
+
+                <table class="table table-bordered">
+
+
+                    <tr>
+                        <th>
+                            Date
+                        </th>
+                        <th>
+                            Subject
+                        </th>
+                        <th style="text-align: center;">
+                            Start Time
+                        </th>
+                        <th style="text-align: center;">
+                            End Time
+                        </th>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            02/08/2019
+                        </td>
+                        <td>
+                            বাংলা ব্যাকরণ ও নির্মিতি
+                        </td>
+                        <td style="text-align: center;">
+                            02:00 PM
+                        </td>
+                        <td style="text-align: center;">
+                            05:00 PM
+                        </td>
+
+                    </tr>
+
+                </table>
+
+
+
+
+
+
+
+
+
+            </div>
+
+            <div class="col-sm-4">
+
+
+                <div align="center">
+                    <h5 class="top-title">
+                        SYLLABUS
+                    </h5>
+                    <a href="">
+                        <h5>চলতি শিক্ষাবর্ষের মাধ্যমিক স্তরের ষষ্ঠ শ্রেণির সিলেবাস। </h5>
+                    </a>
+                </div>
+
+
+                <div style="margin-top: 25px;">
+
+                    <h5 class="top-title">
+                        CLASS LECTURE
+                    </h5>
+
+                    <!-- https://img.youtube.com/vi/Whr3M4P2RKE/hqdefault.jpg -->
+                    <ul class="tutorial-content">
+
+                        <li>
+
+                            <img src="images/youtube.png" style="width: 7%">
+
+                            <a href="#">class l oihiodf hoi fdopih fdio uifo uhofidp uifu opifd oip dfuopiuecture number
+                                - 01
+                                (Math) </a>
+
+
+                        </li>
+                        <li>
+                            <img src="images/youtube.png" style="width: 7%"> <a href="#">class gsdgf sg lunfi sdl
+                                lsfhjksahf lkjhf sajk lecture number - 01
+                                (Math) </a>
+                        </li>
+                        <li>
+                            <img src="images/youtube.png" style="width: 7%"> <a href="#">class lecture number - 01
+                                (Math) </a>
+                        </li>
+                        <li>
+                            <img src="images/youtube.png" style="width: 7%"> <a href="#">class lecture number - 01
+                                (Math) </a>
+                        </li>
+                        <li>
+                            <img src="images/youtube.png" style="width: 7%"> <a onclick="changeVideo('kLq_dJs2TZk')"
+                                href="#">class lecture number - 01
+                                (Math) </a>
+                        </li>
+                    </ul>
+
+
+
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-body">
+
+                                    <iframe id="iframeYoutube" width="100%" height="315"
+                                        src="https://www.youtube.com/embed/e80BbX05D7Y" frameborder="0" allowfullscreen>
+                                    </iframe>
+
+                                </div>
+                                <!-- <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                </div> -->
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div style="margin-top: 25px;">
+                        <h5 class="top-title">
+                            RESULT
+                        </h5>
+
+                        <ul class="tutorial-content">
+                            <li>
+                                <a href="#"> <img src="images/pdf.png" style="width: 7%;"> final exam result of class
+                                    6(2019-20) </a>
+                            </li>
+                            <li>
+                                <a href="#"> <img src="images/pdf.png" style="width: 7%;"> final exam result of class
+                                    6(2019-20) </a>
+                            </li>
+                            <li>
+                                <a href="#"> <img src="images/pdf.png" style="width: 7%;"> final exam result of class
+                                    6(2019-20) </a>
+                            </li>
+                            <li>
+                                <a href="#"> <img src="images/pdf.png" style="width: 7%;"> final exam result of class
+                                    6(2019-20) </a>
+                            </li>
+                            <li>
+                                <a href="#"> <img src="images/pdf.png" style="width: 7%;"> final exam result of class
+                                    6(2019-20) </a>
+                            </li>
+                            <li>
+                                <a href="#"> <img src="images/pdf.png" style="width: 7%;"> final exam result of class
+                                    6(2019-20) </a>
+                            </li>
+                        </ul>
+
+                    </div>
+
+
+
+
+
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!--fotter-->
+    <footer>
+        <div class="footer-area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4 col-sm-4 col-xs-12">
+                        <div class="footer-content">
+                            <div class="footer-head">
+                                <div class="footer-logo">
+                                    <h4>Social media</h4>
+                                </div>
+
+                                <p>
+                                    You can connect with us by social media like facebook, twitter, etc. To connect with
+                                    us by social
+                                    media please visite the following link.
+
+
+                                </p>
+                                <div class="footer-icons">
+                                    <ul>
+                                        <li>
+                                            <a href="#"><i class="fa fa-facebook"></i></a>
+                                        </li>
+                                        <li>
+                                            <a href="#"><i class="fa fa-twitter"></i></a>
+                                        </li>
+                                        <li>
+                                            <a href="#"><i class="fa fa-google"></i></a>
+                                        </li>
+                                        <li>
+                                            <a href="#"><i class="fa fa-pinterest"></i></a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end single footer -->
+                    <div class="col-md-4 col-sm-4 col-xs-12">
+                        <div class="footer-content">
+                            <div class="footer-head">
+                                <h4>Information</h4>
+                                <p>
+                                    To more know about our school, you can contract with following mobile number or
+                                    email.
+                                </p>
+                                <div class="footer-contacts">
+                                    <p><span>Tel:</span> +88016 85 187164</p>
+                                    <p><span>Email:</span> contact@gamil.com</p>
+                                    <p><span>Working Hours:</span> 9am-5pm</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end single footer -->
+                    <div class="col-md-4 col-sm-4 col-xs-12">
+                        <div class="footer-content">
+                            <div class="footer-head">
+                                <h4>Photo gallery</h4>
+                                <div class="flicker-img">
+
+                                    <div class="raw">
+
+                                        <div class="col-xs-4">
+                                            <a href="photo_gallery.html"> <img style="cursor:pointer"
+                                                    class="img-thumbnail" src="images/portfolio/1.jpg" alt=""> </a>
+                                        </div>
+                                        <div class="col-xs-4">
+                                            <a href="photo_gallery.html"> <img class="img-thumbnail"
+                                                    src="images/portfolio/2.jpg" alt=""> </a>
+                                        </div>
+                                        <div class="col-xs-4">
+                                            <a href="photo_gallery.html"> <img class="img-thumbnail"
+                                                    src="images/portfolio/3.jpg" alt=""> </a>
+                                        </div>
+
+                                        <div class="col-xs-4">
+                                            <a href="photo_gallery.html"> <img class="img-thumbnail"
+                                                    src="images/portfolio/4.jpg" alt=""> </a>
+                                        </div>
+                                        <div class="col-xs-4">
+                                            <a href="photo_gallery.html"> <img class="img-thumbnail"
+                                                    src="images/portfolio/5.jpg" alt=""> </a>
+                                        </div>
+                                        <div class="col-xs-4">
+                                            <a href="photo_gallery.html"> <img class="img-thumbnail"
+                                                    src="images/portfolio/6.jpg" alt=""> </a>
+                                        </div>
+
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-area-bottom">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <div class="copyright text-center">
+                            <p>
+                                &copy; Copyright <strong>Hateya H.H.U High School</strong>. All Rights Reserved
+                            </p>
+                        </div>
+                        <div class="credits">
+                            <!--
+                  All the links in the footer should remain intact.
+                  You can delete the links only if you purchased the pro version.
+                  Licensing information: https://bootstrapmade.com/license/
+                  Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/buy/?theme=eBusiness
+                -->
+                            Developed by <a href="https://bootstrapmade.com/">Abdullah-Al-Mamun</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+
+
+
+</body>
+
+</html>

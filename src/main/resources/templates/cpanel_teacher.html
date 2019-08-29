@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+
+<head>
+    <title>CPANEL | TEACHER</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" type="image/x-icon" href="images/cpanel.png" />
+    <link rel="stylesheet" href="bootstrap.css">
+    <link rel="stylesheet" href="cpanel_style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="bootstrap.js"></script>
+    <script src="cpanel_teacher.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet'
+        type='text/css'>
+    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
+
+    <script type="text/javascript" charset="utf8"
+        src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+
+
+    <style>
+        .efw {
+            border-color: red;
+        }
+    </style>
+
+    <script>
+
+
+        $(document).ready(function () {
+
+            getTeacher();
+
+
+        });
+
+        function getTeacher() {
+
+            $.post("access_teacher_info", function (data, status) {
+                teacherList = Object.values(data);
+                // alert(data+", "+status);
+                i = 0;
+                tblRow = "";
+                for(teacher of teacherList)
+                {
+                    tblRow+= "<tr>";
+                    tblRow+= "<td> "+teacher["name"]+" </td>";
+                    tblRow+= "<td> "+teacher["designation"]+" </td>";
+                    tblRow+= "<td> "+teacher["address"]+" </td>";
+                    tblRow+= "<td> "+teacher["phone"]+" </td>";
+                    tblRow+= "<td style='text-align: center'> <button onclick='updateTeacher("+i+")' data-toggle='modal'  class='button-edit' > Edit </button> </td>";
+                    tblRow+= "<td style='text-align: center'> <button onclick='deleteTeacher("+teacher["id"]+")' class='button-delete' > Delete </button> </td>";
+                    tblRow+= "</tr>";
+                    i++;
+                }
+
+                $("#teacherTblBody").empty();
+                $("#teacherTblBody").append(tblRow);
+
+            });
+        }
+
+
+
+        function addTeacher(){
+
+
+            $("#tImage").val('');
+            $("#tName").val('');
+            $("#tDesignation").val('');
+            $("#tAddress").val('');
+            $("#tDob").val('');
+            $("#tPhone").val('');
+            $("#tEmail").val('');
+            $("#tDegree").val('');
+            $("#tSubject").val('');
+            $("#tJoinDate").val('');
+            //$("#tType").val('');
+            $("#tFb").val('');
+            $("#tTwit").val('');
+            $("#tDescription").val('');
+
+            t = 201;
+
+            $("#addNewTeacherModal").modal("show");
+        }
+
+
+        function updateTeacher(v){
+
+            mdata = teacherList[v];
+            $("#modalHeader").text("Update Teacher Info");
+
+            $("#tImage").val('');
+            $("#tName").val('');
+            $("#tDesignation").val('');
+            $("#tAddress").val('');
+            $("#tDob").val('');
+            $("#tPhone").val('');
+            $("#tEmail").val('');
+            $("#tDegree").val('');
+            $("#tSubject").val('');
+            $("#tJoinDate").val('');
+            //$("#tType").val('');
+            $("#tFb").val('');
+            $("#tTwit").val('');
+            $("#tDescription").val('');
+
+
+            $("#tImage").val(mdata["img"]);
+            $("#tName").val(mdata["name"]);
+            $("#tDesignation").val(mdata["designation"]);
+            $("#tAddress").val(mdata["address"]);
+            $("#tDob").val(mdata["dob"]);
+            $("#tPhone").val(mdata["phone"]);
+            $("#tEmail").val(mdata["email"]);
+            $("#tDegree").val(mdata["degree"]);
+            $("#tSubject").val(mdata["subject"]);
+            $("#tJoinDate").val(mdata["joinDate"]);
+            $("#tType").val(mdata["type"]);
+            $("#tFb").val(mdata["facebookLink"]);
+            $("#tTwit").val(mdata["twitterLink"]);
+            $("#tDescription").val(mdata["description"]);
+
+            t = 202;
+
+            $("#addNewTeacherModal").modal("show");
+        }
+
+        function deleteTeacher(v) {
+
+            $.post("delete_teacher",{id: v},
+                function (data, status) {
+                    if(data){
+                        getTeacher();
+                    }else{
+                        alert("Can't delete. Please try again later.")
+                    }
+                }
+            );
+        }
+
+        function addOrUpdateTeacher() {
+
+            $("#tImage").removeClass("efw");
+            $("#tName").removeClass("efw");
+            $("#tDesignation").removeClass("efw");
+            $("#tAddress").removeClass("efw");
+            $("#tDob").removeClass("efw");
+            $("#tPhone").removeClass("efw");
+            $("#tEmail").removeClass("efw");
+            $("#tDegree").removeClass("efw");
+            $("#tSubject").removeClass("efw");
+            $("#tJoinDate").removeClass("efw");
+            $("#tType").removeClass("efw");
+            $("#tFb").removeClass("efw");
+            $("#tTwit").removeClass("efw");
+            $("#tDescription").removeClass("efw");
+
+
+            tImg = $("#tImage").val();
+            tName = $("#tName").val();
+            tDesignation = $("#tDesignation").val();
+            tAddress = $("#tAddress").val();
+            tDob = $("#tDob").val();
+            tPhone = $("#tPhone").val();
+            tEmail = $("#tEmail").val();
+            tDegree = $("#tDegree").val();
+            tSubject = $("#tSubject").val();
+            tJoinDate = $("#tJoinDate").val();
+            tType = $("#tType").val();
+            tFb = $("#tFb").val();
+            tTwit = $("#tTwit").val();
+            tDescription = $("#tDescription").val();
+
+            if (tImg == '') {
+                $("#tImage").addClass("efw");
+            } else if (tName == '') {
+                $("#tName").addClass("efw");
+            } else if (tDesignation == '') {
+                $("#tDesignation").addClass("efw");
+            } else {
+
+                $("#addNewTeacherModal").modal("hide");
+
+                if (t == 201) {
+
+
+                    var teacher = {
+                        'type': tType,
+                        'name': tName,
+                        'img': tImg,
+                        'designation': tDesignation,
+                        'address': tAddress,
+                        'email': tEmail,
+                        'phone': tPhone,
+                        'subject': tSubject,
+                        'degree': tDegree,
+                        'dob': tDob,
+                        'joinDate': tJoinDate,
+                        'description': tDescription,
+                        'facebookLink': tFb,
+                        'twitterLink': tTwit
+                    };
+
+
+
+                    $.ajax({
+                        type: "POST",
+                        contentType: 'application/json; charset=utf-8',
+                        dataType: 'json',
+                        url: "save_teacher",
+                        data: JSON.stringify(teacher), // Note : it is important
+                        success: function (result) {
+                            if (result) {
+                                getTeacher();
+                            } else {
+                                alert("Can't save! Please try again.");
+                            }
+                        },
+                        error: function (e) {
+                            alert("Internal error occurred.");
+                        }
+                    });
+
+
+                } else if (t == 202) {
+
+                    var teacher = {
+                        'id':mdata["id"],
+                        'type': tType,
+                        'name': tName,
+                        'img': tImg,
+                        'designation': tDesignation,
+                        'address': tAddress,
+                        'email': tEmail,
+                        'phone': tPhone,
+                        'subject': tSubject,
+                        'degree': tDegree,
+                        'dob': tDob,
+                        'joinDate': tJoinDate,
+                        'description': tDescription,
+                        'facebookLink': tFb,
+                        'twitterLink': tTwit
+                    };
+
+
+                    $.ajax({
+                        type: "POST",
+                        contentType: 'application/json; charset=utf-8',
+                        dataType: 'json',
+                        url: "update_teacher",
+                        data: JSON.stringify(teacher), // Note : it is important
+                        success: function (result) {
+                            if (result) {
+                                getTeacher();
+                            } else {
+                                alert("Can't update! Please try again.");
+                            }
+                        },
+                        error: function (e) {
+                            alert("Internal error occurred.");
+                        }
+                    });
+
+                }
+
+            }
+
+        }
+
+
+
+    </script>
+
+
+
+</head>
+
+<body style="top:0">
+
+
+    <!-- Add Teacher Modal -->
+    <div class="modal fade" id="addNewTeacherModal" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 id="modalHeader" class="modal-title">Add New Teacher</h4>
+                </div>
+                <div class="modal-body">
+
+
+                    <div style="display:flex">
+                        <div class="form-group" style="width:100%;">
+                            <label>Image Url:</label>
+                            <input type="url" class="form-control" id="tImage" placeholder="Enter image url">
+                        </div>
+
+                    </div>
+
+
+
+                    <div style="display:flex">
+                        <div class="form-group" style="width:48%;">
+                            <label>Name:</label>
+                            <input type="text" class="form-control" id="tName" placeholder="Enter name">
+                        </div>
+                        <div class="form-group" style="width:48%;  margin-left:4%;">
+                            <label>Designation:</label>
+                            <input type="text" class="form-control" id="tDesignation" placeholder="Enter designation">
+                        </div>
+                    </div>
+
+                    <div style="display:flex">
+                        <div class="form-group" style="width:48%;">
+                            <label>Address:</label>
+                            <input type="text" class="form-control" id="tAddress" placeholder="Enter address">
+                        </div>
+                        <div class="form-group" style="width:48%;  margin-left:4%;">
+                            <label>Date of birth:</label>
+                            <input type="date" class="form-control" id="tDob" placeholder="Enter date of birth">
+                        </div>
+                    </div>
+
+
+                    <div style="display:flex">
+                        <div class="form-group" style="width:48%;">
+                            <label>Phone:</label>
+                            <input type="text" class="form-control" id="tPhone" placeholder="Enter phone number">
+                        </div>
+                        <div class="form-group" style="width:48%;  margin-left:4%;">
+                            <label>Email Addrss:</label>
+                            <input type="text" class="form-control" id="tEmail" placeholder="Enter email address">
+                        </div>
+                    </div>
+
+
+                    <div style="display:flex">
+                        <div class="form-group" style="width:48%;">
+                            <label>Degree:</label>
+                            <input type="text" class="form-control" id="tDegree" placeholder="Enter qualification">
+                        </div>
+                        <div class="form-group" style="width:48%;  margin-left:4%;">
+                            <label>Teaching Subject:</label>
+                            <input type="text" class="form-control" id="tSubject" placeholder="Enter email address">
+                        </div>
+                    </div>
+
+
+                    <div style="display:flex">
+                        <div class="form-group" style="width:48%;">
+                            <label>Joining Date:</label>
+                            <input type="date" class="form-control" id="tJoinDate" placeholder="Enter Joining date">
+                        </div>
+                        <div class="form-group" style="width:48%;  margin-left:4%;">
+                            <label>Type:</label>
+                            <select class="form-control" id="tType">
+                                <option>Current</option>
+                                <option>Retired</option>
+                            </select>
+                        </div>
+                    </div>
+
+
+
+                    <div style="display:flex">
+                        <div class="form-group" style="width:48%;">
+                            <label>Facebook:</label>
+                            <input type="url" class="form-control" id="tFb" placeholder="Enter facebook profile">
+                        </div>
+                        <div class="form-group" style="width:48%;  margin-left:4%;">
+                            <label>Twitter:</label>
+                            <input type="text" class="form-control" id="tTwit" placeholder="Enter twitter profile">
+                        </div>
+                    </div>
+
+
+
+                    <div style="display:flex">
+                        <div class="form-group" style="width:100%;">
+                            <label>Description:</label>
+                            <textarea type="text" style="min-height:100px;" class="form-control" id="tDescription"
+                                placeholder="Enter short description"></textarea>
+                        </div>
+
+                    </div>
+
+
+                </div>
+                <div class="modal-footer">
+                    <!--<button type="button" id="sendSms"  class="btn btn-primary" >Send SMS</button>-->
+                    <button type="button" onclick="addOrUpdateTeacher()" class="btn btn-primary">Done</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+    <div class="side-menu">
+
+        <div align="center">
+            <img class="logo" src="images/user3.png" />
+            <p style="font-size: 12px ;color: rgb(224, 230, 233); margin: 0px; padding: 0px;"> Hateya H.H.U Higth School
+            </p>
+            <p style="font-size: 12px ;color: rgb(166, 172, 175); margin: 0px; padding: 0px;"> Admin Panel </p>
+        </div>
+
+        <h5
+            style="border-radius: 0;background: #22C5F6; padding-left: 20px; height: 35px; color: #fff; padding-top: 10px;">
+            Option Menu
+        </h5>
+
+
+
+        <ul>
+            <li> <a href="/cpanel"> <i  class="fa fa-home"> </i> Home </a> </li>
+            <li> <a  href="/access_about_us"> <i style="padding: 0 5px;" class="fa fa-info"> </i> About Us </a> </li>
+            <li> <a href="/access_class_data"> <i style="padding: 0 5px;" class="fa fa-graduation-cap"></i> Class
+            </a> </li>
+            <li> <a class="active-option" href="/access_teacher"> <i style="padding: 0 5px;" class="fa fa-users"> </i> Teacher </a> </li>
+            <li> <a href="/access_library"> <i style="padding: 0 5px;" class="fa fa-book"> </i> Library </a> </li>
+            <li> <a href="/access_result"> <i style="padding: 0 5px;" class="fa fa-bar-chart"> </i> Result </a> </li>
+            <li> <a href="/access_contact"> <i style="padding: 0 5px;" class="fa fa-address-book"> </i> Contact </a> </li>
+            <li> <a href="/access_image_gallery"> <i style="padding: 0 5px;" class="fa fa-image"></i> Image Gallery </a> </li>
+        </ul>
+
+
+
+    </div>
+
+
+
+
+    <div class="main">
+
+        <div class="top-bar">
+            <div class="container">
+                <h6
+                    style="color: rgba(68, 171, 255, 0.692);padding: 10px 20px; float : left; text-transform: uppercase;">
+                    Welcome to Hatrya H.H.U high School Admin Panel
+                </h6>
+                <a href="/logout" class="logout-btn " style="float: right; margin-right: 20px;"> <i
+                        class="fa fa-sign-out"></i> Logout
+                </a>
+            </div>
+        </div>
+
+
+
+        <div class="container" style="margin-top:75px;">
+
+
+            <div class="card-view">
+
+                <button class="btn btn-primary" data-toggle="modal" onclick="addTeacher()">
+                    Add Teacher</button>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Designation</th>
+                            <th>Address</th>
+                            <th>Phone</th>
+                            <th style="text-align: center">Edit</th>
+                            <th style="text-align: center">Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody id="teacherTblBody"></tbody>
+                </table>
+
+            </div>
+
+
+
+        </div>
+
+
+     </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+
+</html>

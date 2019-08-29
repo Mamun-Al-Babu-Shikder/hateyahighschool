@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+
+<head>
+  <title>CONTACT</title>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="bootstrap.css">
+  <link rel="stylesheet" href="mystyle.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="bootstrap.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+  <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet'
+    type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+  <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet">
+
+  <style>
+
+    .overlay{
+      width: 100%;
+      position: fixed;
+      z-index: 1;
+    }
+
+    .myalert{
+      margin: 80px 30px;
+      float: right;
+    }
+
+
+  </style>
+
+
+</head>
+
+<body>
+
+
+
+
+<div th:if="${send_status!=null}">
+
+  <div  class="overlay">
+
+    <div style="float: right" >
+
+      <div th:if="${send_status=='SUCCESS'}">
+      <div class="myalert">
+      <div class="alert alert-success alert-dismissible fade in">
+        <a class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>Success !</strong> Message successfully sent.</div>
+      </div>
+      </div>
+
+      <div th:if="${send_status=='FAILED'}">
+      <div class="myalert">
+      <div class="alert alert-danger alert-dismissible fade in">
+        <a class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>Failed !</strong> Message can't sent.</div>
+      </div>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+
+
+
+  <nav id="home-id" class="navbar navbar-default navbar-fixed-top">
+
+    <div class="container-fluid">
+
+      <!-- BRAND -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#alignment-example"
+          aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <p class="navbar-brand"
+          style="margin: 0px;  color: #fed136;
+        font-family: 'Kaushan Script', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; ">
+          Hateya H.H.U high school</p>
+      </div>
+      <!-- COLLAPSIBLE NAVBAR -->
+      <div class="collapse navbar-collapse " id="alignment-example">
+        <!-- Links -->
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="/">HOME</a></li>
+          <li><a href="about.html">ABOUT</a></li>
+          <li class="dropdown"><a class="dropdown-toggle " data-toggle="dropdown" > CLASSES <span
+                class="caret"></span></a>
+            <ul class="dropdown-menu ">
+              <li><a th:class="${access_class==6} ? 'active-opt' : 'null'" href="/class-6">CLASS-6</a></li>
+              <li><a th:class="${access_class==7} ? 'active-opt' : 'null'" href="/class-7">CLASS-7</a></li>
+              <li><a th:class="${access_class==8} ? 'active-opt' : 'null'" href="/class-8">CLASS-8</a></li>
+              <li><a th:class="${access_class==9} ? 'active-opt' : 'null'" href="/class-9">CLASS-9</a></li>
+              <li><a th:class="${access_class==10} ? 'active-opt' : 'null'" href="/class-10">CLASS-10</a></li>
+            </ul>
+          </li>
+          <li><a href="/teacher">TEACHER</a></li>
+          <li><a href="/library">LIBRARY</a></li>
+          <li><a href="/result">RESULT</a></li>
+          <li><a class="active-opt">CONTACT</a></li>
+        </ul>
+
+      </div>
+
+    </div>
+  </nav>
+
+
+
+
+
+
+
+  <!-- Contact -->
+  <section class="page-section" id="contact" th:style="'background-image: url(images/map-image.png) ;'">
+
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 text-center">
+          <h2 class="section-heading text-uppercase header-text">Contact Us</h2>
+          <h3 class=" text-muted" style="padding: 0px 0px 20px 0px; font-size:17px;">Please fill up the following gap and
+            send it to us.</h3>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-12">
+          <form action="/send_message" method="POST">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <input class="form-control" name="name" type="text" placeholder="Your Name *" required="true">
+                  <p class="help-block text-danger"></p>
+                </div>
+                <div class="form-group">
+                  <input class="form-control" name="email" type="email" placeholder="Your Email *" required
+                    data-validation-required-message="Please enter your email address.">
+                  <p class="help-block text-danger"></p>
+                </div>
+                <div class="form-group">
+                  <input class="form-control" name="phone" type="tel" placeholder="Your Phone *" required
+                    data-validation-required-message="Please enter your phone number.">
+                  <p class="help-block text-danger"></p>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <textarea class="form-control" name="message" placeholder="Your Message *" required
+                    data-validation-required-message="Please enter a message."></textarea>
+                  <p class="help-block text-danger"></p>
+                </div>
+              </div>
+              <div class="clearfix"></div>
+              <div class="col-lg-12 text-center">
+                <div id="success"></div>
+                <button id="sendMessageButton" class="btn btn-primary btn-xl text-uppercase" type="submit">Send
+                  Message</button>
+              </div>
+            </div>
+          </form >
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+
+
+
+
+<!--fotter-->
+<footer>
+  <div class="footer-area">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4 col-sm-4 col-xs-12">
+          <div class="footer-content">
+            <div class="footer-head">
+              <div class="footer-logo">
+                <h4>Social media</h4>
+              </div>
+
+              <p>
+                You can connect with us by social media like facebook, twitter, etc. To connect with
+                us by social
+                media please visite the following link.
+
+
+              </p>
+              <div class="footer-icons">
+                <ul>
+                  <li>
+                    <a th:href="${footer_social_media_facebook}" target="_blank"><i class="fa fa-facebook"></i></a>
+                  </li>
+                  <li>
+                    <a th:href="${footer_social_media_twitter}" target="_blank"><i class="fa fa-twitter"></i></a>
+                  </li>
+                  <li>
+                    <a th:href="${footer_social_media_linkedin}" target="_blank"><i class="fa fa-linkedin"></i></a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- end single footer -->
+        <div class="col-md-4 col-sm-4 col-xs-12">
+          <div class="footer-content">
+            <div class="footer-head">
+              <h4>Information</h4>
+              <p>
+                To more know about our school, you can contract with following mobile number or
+                email.
+              </p>
+              <div class="footer-contacts">
+                <p ><span>Tel:</span> <u th:text="${footer_information_tel}"></u> </p>
+                <p ><span>Email:</span> <u th:text="${footer_information_email}"></u> </p>
+                <p><span>Working Hours:</span> 9am-5pm</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- end single footer -->
+        <div class="col-md-4 col-sm-4 col-xs-12">
+          <div class="footer-content">
+            <div class="footer-head">
+              <h4>Photo gallery</h4>
+              <div class="flicker-img">
+
+                <div class="raw">
+
+                  <div class="col-xs-4">
+                    <a href="photo_gallery.html"> <img style="cursor:pointer"
+                                                       class="img-thumbnail" src="images/portfolio/1.jpg" alt=""> </a>
+                  </div>
+                  <div class="col-xs-4">
+                    <a href="photo_gallery.html"> <img class="img-thumbnail"
+                                                       src="images/portfolio/2.jpg" alt=""> </a>
+                  </div>
+                  <div class="col-xs-4">
+                    <a href="photo_gallery.html"> <img class="img-thumbnail"
+                                                       src="images/portfolio/3.jpg" alt=""> </a>
+                  </div>
+
+                  <div class="col-xs-4">
+                    <a href="photo_gallery.html"> <img class="img-thumbnail"
+                                                       src="images/portfolio/4.jpg" alt=""> </a>
+                  </div>
+                  <div class="col-xs-4">
+                    <a href="photo_gallery.html"> <img class="img-thumbnail"
+                                                       src="images/portfolio/5.jpg" alt=""> </a>
+                  </div>
+                  <div class="col-xs-4">
+                    <a href="photo_gallery.html"> <img class="img-thumbnail"
+                                                       src="images/portfolio/6.jpg" alt=""> </a>
+                  </div>
+
+                </div>
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer-area-bottom">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+          <div class="copyright text-center">
+            <p>
+              &copy; Copyright <strong>Hateya H.H.U High School</strong>. All Rights Reserved
+            </p>
+          </div>
+          <div class="credits">
+            Developed by <a href="https://bootstrapmade.com/">Abdullah-Al-Mamun</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+
+
+
+
+
+
+</body>
+
+</html>

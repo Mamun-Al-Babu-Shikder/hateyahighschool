@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+
+<head>
+    <title>CPANEL | ABOUT</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="bootstrap.css">
+    <link rel="stylesheet" href="cpanel_style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="bootstrap.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet'
+        type='text/css'>
+    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
+
+    <script type="text/javascript" charset="utf8"
+        src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+
+
+    <style>
+        .efw {
+            border-color: red;
+        }
+    </style>
+
+
+    <script>
+
+        $(document).ready(function () {
+
+
+
+
+            $.post("fetch_about_date", function (data, status) {
+
+                fixedValuedDataList = Object.values(data);
+
+                for(x of fixedValuedDataList){
+                    if(x["id"]=='class_6'){
+                        $("#clsSixImg").val(x["imgurl"]);
+                        $("#clsSixShortText").val(x["value"]);
+                    }else if(x["id"]=='class_7'){
+                       $("#clsSevenImg").val(x["imgurl"]);
+                       $("#clsSevenShortText").val(x["value"]);
+                    }else if(x["id"]=='class_8'){
+                        $("#clsEightImg").val(x["imgurl"]);
+                        $("#clsEightShortText").val(x["value"]);
+                    }else if(x["id"]=='class_9_10'){
+                        $("#clsNineImg").val(x["imgurl"]);
+                        $("#clsNineShortText").val(x["value"]);
+                    }else if(x["id"]=='footer_information_tel'){
+                        $("#phoneNumber").val(x["value"]);
+                    }else if(x["id"]=='footer_information_email'){
+                        $("#emailAddress").val(x["value"]);
+                    }else if(x["id"]=='footer_social_media_facebook'){
+                        $("#fbLink").val(x["link"]);
+                    }else if(x["id"]=='footer_social_media_twitter'){
+                        $("#twitLink").val(x["link"]);
+                    }else if(x["id"]=='footer_social_media_linkedin'){
+                        $("#linkedinLink").val(x["link"]);
+                    }
+
+                }
+
+
+            });
+
+
+
+
+            $("#clsSixUpdateBtn").click(function () {
+
+                $("#clsSixImg").removeClass("efw");
+                $("#clsSixShortText").removeClass("efw");
+
+                img = $("#clsSixImg").val();
+                note = $("#clsSixShortText").val();
+
+                if (img == '') {
+                    $("#clsSixImg").addClass("efw");
+                } else if (note == '') {
+                    $("#clsSixShortText").addClass("efw");
+                } else {
+
+                    $.post("update_about_us",
+                        {
+                            id : "class_6",
+                            imgurl : img,
+                            value : note,
+                            link : ''
+                        },
+                        function (data, status) {
+
+                        if(data){
+                            alert("Successfully updated");
+                        }else{
+                            alert("Can't update, please try again.")
+                        }
+
+                    });
+                }
+            });
+
+
+
+            $("#clsSevenUpdateBtn").click(function () {
+
+                $("#clsSevenImg").removeClass("efw");
+                $("#clsSevenShortText").removeClass("efw");
+
+                img = $("#clsSevenImg").val();
+                note = $("#clsSevenShortText").val();
+
+                if (img == '') {
+                    $("#clsSevenImg").addClass("efw");
+                } else if (note == '') {
+                    $("#clsSevenShortText").addClass("efw");
+                } else {
+
+                    $.post("update_about_us",
+                        {
+                            id : "class_7",
+                            imgurl : img,
+                            value : note,
+                            link : ''
+                        },
+                        function (data, status) {
+
+                            if(data){
+                                alert("Successfully updated");
+                            }else{
+                                alert("Can't update, please try again.")
+                            }
+
+                        });
+
+                }
+            });
+
+
+            $("#clsEightUpdateBtn").click(function () {
+
+                $("#clsEightImg").removeClass("efw");
+                $("#clsEightShortText").removeClass("efw");
+
+                img = $("#clsEightImg").val();
+                note = $("#clsEightShortText").val();
+
+                if (img == '') {
+                    $("#clsEightImg").addClass("efw");
+                } else if (note == '') {
+                    $("#clsEightShortText").addClass("efw");
+                } else {
+
+                    $.post("update_about_us",
+                        {
+                            id : "class_8",
+                            imgurl : img,
+                            value : note,
+                            link : ''
+                        },
+                        function (data, status) {
+
+                            if(data){
+                                alert("Successfully updated");
+                            }else{
+                                alert("Can't update, please try again.")
+                            }
+
+                        });
+
+                }
+            });
+
+
+
+            $("#clsNineUpdateBtn").click(function () {
+
+                $("#clsNineImg").removeClass("efw");
+                $("#clsNineShortText").removeClass("efw");
+
+                img = $("#clsNineImg").val();
+                note = $("#clsNineShortText").val();
+
+                if (img == '') {
+                    $("#clsNineImg").addClass("efw");
+                } else if (note == '') {
+                    $("#clsNineShortText").addClass("efw");
+                } else {
+
+                    $.post("update_about_us",
+                        {
+                            id : "class_9_10",
+                            imgurl : img,
+                            value : note,
+                            link : ''
+                        },
+                        function (data, status) {
+
+                            if(data){
+                                alert("Successfully updated");
+                            }else{
+                                alert("Can't update, please try again.")
+                            }
+
+                        });
+
+
+                }
+            });
+
+
+
+            $("#updatePhoneBtn").click(function () {
+                $("#phoneNumber").removeClass("efw");
+                phone = $("#phoneNumber").val();
+
+                if (phone == '') {
+                    $("#phoneNumber").addClass('efw');
+                } else {
+
+                    $.post("update_about_us",
+                        {
+                            id : "footer_information_tel",
+                            imgurl : '',
+                            value : phone,
+                            link : ''
+                        },
+                        function (data, status) {
+
+                            if(data){
+                                alert("Successfully updated");
+                            }else{
+                                alert("Can't update, please try again.")
+                            }
+
+                        });
+
+                }
+            });
+
+
+            $("#updateEmailBtn").click(function () {
+                $("#emailAddress").removeClass("efw");
+                email = $("#emailAddress").val();
+
+                if (email == '') {
+                    $("#emailAddress").addClass('efw');
+                } else {
+
+                    $.post("update_about_us",
+                        {
+                            id : "footer_information_email",
+                            imgurl : '',
+                            value : email,
+                            link : ''
+                        },
+                        function (data, status) {
+
+                            if(data){
+                                alert("Successfully updated");
+                            }else{
+                                alert("Can't update, please try again.")
+                            }
+
+                        });
+
+                }
+            });
+
+
+            $("#updateFbLinkBtn").click(function () {
+                $("#fbLink").removeClass("efw");
+                link = $("#fbLink").val();
+
+                if (link == '') {
+                    $("#fbLink").addClass('efw');
+                } else {
+
+
+                    $.post("update_about_us",
+                        {
+                            id : "footer_social_media_facebook",
+                            imgurl : '',
+                            value : '',
+                            link : link
+                        },
+                        function (data, status) {
+
+                            if(data){
+                                alert("Successfully updated");
+                            }else{
+                                alert("Can't update, please try again.")
+                            }
+
+                        });
+
+                }
+            });
+
+            $("#updateTwitterLinkBtn").click(function () {
+                $("#twitLink").removeClass("efw");
+                link = $("#twitLink").val();
+
+                if (link == '') {
+                    $("#twitLink").addClass('efw');
+                } else {
+                    $.post("update_about_us",
+                        {
+                            id : "footer_social_media_twitter",
+                            imgurl : '',
+                            value : '',
+                            link : link
+                        },
+                        function (data, status) {
+
+                            if(data){
+                                alert("Successfully updated");
+                            }else{
+                                alert("Can't update, please try again.")
+                            }
+
+                        });
+                }
+            });
+
+            $("#updateLinkedinLinkBtn").click(function () {
+                $("#linkedinLink").removeClass("efw");
+                link = $("#linkedinLink").val();
+
+                if (link == '') {
+                    $("#linkedinLink").addClass('efw');
+                } else {
+
+                    $.post("update_about_us",
+                        {
+                            id : "footer_social_media_linkedin",
+                            imgurl : '',
+                            value : '',
+                            link : link
+                        },
+                        function (data, status) {
+
+                            if(data){
+                                alert("Successfully updated");
+                            }else{
+                                alert("Can't update, please try again.")
+                            }
+
+                        });
+
+                }
+            });
+
+
+
+        });
+
+
+    </script>
+
+
+
+</head>
+
+<body style="top:0">
+
+
+
+
+
+    <div class="side-menu">
+
+        <div align="center">
+            <img class="logo" src="images/user3.png" />
+            <p style="font-size: 12px ;color: rgb(224, 230, 233); margin: 0px; padding: 0px;"> Hateya H.H.U Higth School
+            </p>
+            <p style="font-size: 12px ;color: rgb(166, 172, 175); margin: 0px; padding: 0px;"> Admin Panel </p>
+        </div>
+
+        <h5
+            style="border-radius: 0;background: #22C5F6; padding-left: 20px; height: 35px; color: #fff; padding-top: 10px;">
+            Option Menu
+        </h5>
+
+
+
+        <ul>
+            <li> <a href="/cpanel" > <i  class="fa fa-home"> </i> Home </a> </li>
+            <li> <a class="active-option" href="/access_about_us"> <i style="padding: 0 5px;" class="fa fa-info"> </i> About Us </a> </li>
+            <li> <a href="/access_class_data"> <i style="padding: 0 5px;" class="fa fa-graduation-cap"></i> Class
+            </a> </li>
+            <li> <a href="/access_teacher"> <i style="padding: 0 5px;" class="fa fa-users"> </i> Teacher </a> </li>
+            <li> <a href="/access_library"> <i style="padding: 0 5px;" class="fa fa-book"> </i> Library </a> </li>
+            <li> <a href="/access_result"> <i style="padding: 0 5px;" class="fa fa-bar-chart"> </i> Result </a> </li>
+            <li> <a href="/access_contact"> <i style="padding: 0 5px;" class="fa fa-address-book"> </i> Contact </a> </li>
+            <li> <a href="/access_image_gallery"> <i style="padding: 0 5px;" class="fa fa-image"></i> Image Gallery </a> </li>
+        </ul>
+
+
+
+    </div>
+
+
+
+
+
+    <div class="main">
+
+        <div class="top-bar">
+            <div class="container">
+                <h6
+                    style="color: rgba(68, 171, 255, 0.692);padding: 10px 20px; float : left; text-transform: uppercase;">
+                    Welcome to Hatrya H.H.U high School Admin Panel
+                </h6>
+                <a href="#" class="logout-btn " style="float: right; margin-right: 20px;"> <i
+                        class="fa fa-sign-out"></i> Logout
+                </a>
+            </div>
+        </div>
+
+
+
+        <div class="container" style="margin-top:75px;">
+
+
+            <div class="card-view">
+
+                <h4 style="color:#00D591;">Update Date :</h4>
+
+                <div class="form-group" style="display: flex">
+                    <input type="text" class="form-control" id="clsSixImg" placeholder="Class six image url">
+                    <input style="margin: 0 10px;" type="text" class="form-control" id="clsSixShortText"
+                        placeholder="Short note on class six">
+                    <button id="clsSixUpdateBtn" class="btn btn-primary">Update</button>
+                </div>
+
+                <div class="form-group" style="display: flex">
+                    <input type="text" class="form-control" id="clsSevenImg" placeholder="Class seven image url">
+                    <input style="margin: 0 10px;" type="text" class="form-control" id="clsSevenShortText"
+                        placeholder="Short note on class seven">
+                    <button id="clsSevenUpdateBtn" class="btn btn-primary">Update</button>
+                </div>
+
+                <div class="form-group" style="display: flex">
+                    <input type="text" class="form-control" id="clsEightImg" placeholder="Class eight image url">
+                    <input style="margin: 0 10px;" type="text" class="form-control" id="clsEightShortText"
+                        placeholder="Short note on class eight">
+                    <button id="clsEightUpdateBtn" class="btn btn-primary">Update</button>
+                </div>
+
+                <div class="form-group" style="display: flex">
+                    <input type="text" class="form-control" id="clsNineImg" placeholder="Class nine, ten image url">
+                    <input style="margin: 0 10px;" type="text" class="form-control" id="clsNineShortText"
+                        placeholder="Short note on class nine, ten">
+                    <button id="clsNineUpdateBtn" class="btn btn-primary">Update</button>
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+
+
+
+        <div class="container" style="margin-top:15px;">
+
+            <div class="card-view">
+
+                <h4 style="color:#00D591;">Update Basic info :</h4>
+                <div class="form-group" style="display: flex">
+                    <input style="margin: 0 0px;" type="text" class="form-control" id="phoneNumber"
+                        placeholder="Phone number">
+                    <button style="margin: 0 10px;" id="updatePhoneBtn" class="btn btn-primary">Update</button>
+
+                    <input style="margin: 0 10px;" type="email" class="form-control" id="emailAddress"
+                        placeholder="Email address">
+                    <button id="updateEmailBtn" class="btn btn-primary">Update</button>
+                </div>
+            </div>
+
+        </div>
+
+
+        <div class="container" style="margin-top:15px;">
+
+            <div class="card-view">
+
+                <h4 style="color:#00D591;">Update Social Media info :</h4>
+                <div class="form-group" style="display: flex">
+                    <input style="margin-right: 10px;" type="text" class="form-control" id="fbLink"
+                        placeholder="Enter facebook profile address">
+                    <button id="updateFbLinkBtn" class="btn btn-primary">Update</button>
+                </div>
+                <div class="form-group" style="display: flex">
+                    <input style="margin-right: 10px;" type="text" class="form-control" id="twitLink"
+                        placeholder="Enter twitter profile address">
+                    <button id="updateTwitterLinkBtn" class="btn btn-primary">Update</button>
+                </div>
+                <div class="form-group" style="display: flex">
+                    <input style="margin-right: 10px;" type="text" class="form-control" id="linkedinLink"
+                        placeholder="Enter linkedin profile address">
+                    <button id="updateLinkedinLinkBtn" class="btn btn-primary">Update</button>
+                </div>
+            </div>
+
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </div>
+
+
+
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+
+<head>
+  <title>TEACHER</title>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="bootstrap.css">
+  <link rel="stylesheet" href="mystyle.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="bootstrap.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+  <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet'
+    type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+  <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet">
+
+  <style>
+    #teacher-opt-menu>li>a {
+      cursor: pointer;
+    }
+  </style>
+
+  <script>
+
+    $(document).ready(function () {
+
+      $(".all-t").show();
+      $(".curr-t").hide();
+      $(".ret-t").hide();
+
+
+    });
+
+
+    function displayAllTeacherInfo(v) {
+      $("#allTeacherInfoModal").modal("show");
+
+
+    }
+
+
+
+
+
+
+
+    function activeOpt(v) {
+
+      for (x of $("#teacher-opt-menu").children("li")) {
+        $(x).removeClass("active");
+        $("." + $(x).attr("id")).hide();
+      }
+      //alert($($("#teacher-opt-menu").children("li")[0]).attr("id"));
+      //
+      $(v).addClass("active");
+      $("." + $(v).attr("id")).show();
+
+    }
+
+
+
+
+  </script>
+
+
+</head>
+
+
+
+<body>
+
+
+
+
+  <!-- Income Message View Modal -->
+  <div class="modal fade" id="allTeacherInfoModal" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Teacher</h4>
+        </div>
+        <div class="modal-body">
+
+
+          <center>
+
+            <div class="theacher-img">
+              <img class="img img-responsive" src="images/t1.jpg">
+            </div>
+
+
+
+            <div class="about-teacher" style="box-shadow: none ;">
+              <h4> MD. Abul Basar</h4>
+              <p>Assistance Teacher</p>
+
+
+              <table style="width: 70%" class="table table-respinsive">
+
+                <tr>
+                  <td>Date of birth</td>
+                  <td>04-12-1963</td>
+                </tr>
+
+                <tr>
+                  <td>Address</td>
+                  <td>Sakhipur, Tangail</td>
+                </tr>
+
+                <tr>
+                  <td>Phone</td>
+                  <td>0172342344</td>
+                </tr>
+
+                <tr>
+                    <td>Email Address</td>
+                    <td>emailaddress123@gmail.com</td>
+                  </tr>
+
+                <tr>
+                    <td>Degree</td>
+                    <td>Masters in economics</td>
+                  </tr>
+
+                <tr>
+                  <td>Teaching subject</td>
+                  <td>ICT</td>
+                </tr>
+
+                <tr>
+                    <td>Joining date</td>
+                    <td>04-12-2003</td>
+                  </tr>
+
+              </table>
+
+              <p style="padding: 5px 50px;">
+                A teacher (also called a school teacher or, in some contexts, an educator) is a person who helps
+                students to acquire knowledge, competence or virtue.
+
+                Informally the role of teacher may be taken on by anyone (e.g. when showing a colleague how to perform a
+                specific task). In some countries, teaching young people of school age may be carried out in an informal
+                setting, such as within the family (homeschooling), rather than in a formal setting such as a school or
+                college. Some other professions may involve a significant amount of teaching (e.g. youth worker,
+                pastor).
+              </p>
+
+            </div>
+
+
+          </center>
+
+
+
+        </div>
+        <div class="modal-footer">
+          <!--<button type="button" id="sendSms"  class="btn btn-primary" >Send SMS</button>-->
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+  <nav id="home-id" class="navbar navbar-default navbar-fixed-top">
+
+    <div class="container-fluid">
+
+      <!-- BRAND -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#alignment-example"
+          aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <p class="navbar-brand"
+          style="margin: 0px;  color: #fed136;
+        font-family: 'Kaushan Script', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; ">
+          Hateya H.H.U high school</p>
+      </div>
+      <!-- COLLAPSIBLE NAVBAR -->
+      <div class="collapse navbar-collapse " id="alignment-example">
+        <!-- Links -->
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="index.html">HOME</a></li>
+          <li><a>ABOUT</a></li>
+          <li class="dropdown"><a class="dropdown-toggle " data-toggle="dropdown" href="#"> CLASSES <span
+                class="caret"></span></a>
+            <ul class="dropdown-menu ">
+              <li><a href="class-6.html">CLASS-6</a></li>
+              <li><a href="#">CLASS-7</a></li>
+              <li><a href="#">CLASS-8</a></li>
+              <li><a href="#">CLASS-9</a></li>
+              <li><a href="#">CLASS-10</a></li>
+            </ul>
+          </li>
+          <li><a class="active-opt" href="#">TEACHER</a></li>
+          <li><a href="#">LIBRARY</a></li>
+          <li><a href="#">RESULT</a></li>
+          <li><a href="contract.html">CONTACT</a></li>
+        </ul>
+
+      </div>
+
+    </div>
+  </nav>
+
+
+  <div class="about-banner" style="background-image: url(images/bk1.PNG); " align="center">
+    <div class="about-banner-over">
+      <h1 style="padding-top: 80px; color: #fff;"> OUR TEACHERS </h1>
+      <p style="padding-top: 8px; color: #fff;"> LET'S TRY TO KNOW ABOUY OUR SCHOOL TEACHERS.</p>
+    </div>
+  </div>
+
+
+
+
+  <div class="container" style="margin-top: 30px;">
+
+    <ul class="nav nav-tabs " id="teacher-opt-menu">
+      <li class="active" onclick="activeOpt(this)" id="all-t"><a>All Teacher</a></li>
+      <li onclick="activeOpt(this)" id="curr-t"><a>Current Teacher</a></li>
+      <li onclick="activeOpt(this)" id="ret-t"><a>Retired Teacher</a></li>
+    </ul>
+    <br>
+  </div>
+
+
+
+
+
+  <style>
+    .teacher-content {
+      padding: 40px 0px;
+      text-align: center;
+      align-content: center;
+      align-items: center;
+      -webkit-align-content: center;
+
+    }
+
+    .teacher-content:hover .about-teacher {
+      box-shadow: 0px 5px 40px rgba(29, 34, 47, 0.15);
+    }
+
+    .teacher-content:hover .theacher-img>img {
+
+      -webkit-transform: scale(1.1);
+      -moz-transform: scale(1.1);
+      -ms-transform: scale(1.1);
+      -o-transform: scale(1.1);
+      transform: scale(1.1);
+    }
+
+
+    .theacher-img {
+      width: 180px;
+      height: 160px;
+      border-radius: 5px;
+      margin-bottom: -70px;
+      overflow: hidden;
+    }
+
+    .theacher-img>img {
+      transition: 0.5s;
+    }
+
+
+
+
+    .about-teacher {
+      padding: 80px 0px 15px 0px;
+      background-color: #fff;
+      border-radius: 7px;
+      box-shadow: 0px 5px 15px rgba(29, 34, 47, 0.15);
+    }
+
+    .about-teacher>h4 {
+      font-family: 'Roboto Slab', serif;
+      font-size: 20px;
+      cursor: pointer;
+      font-weight: 700;
+      color: #384158;
+      -webkit-transition: all 200ms ease;
+      -moz-transition: all 200ms ease;
+      -ms-transition: all 200ms ease;
+      -o-transition: all 200ms ease;
+      transition: all 200ms ease;
+    }
+
+    .about-teacher>h4:hover {
+      color: #14BDEE;
+    }
+
+    .about-teacher>ul {
+      margin-left: -40px;
+    }
+
+    .about-teacher>ul>li {
+      list-style: none;
+      display: inline-block;
+      padding: 5px 10px;
+      text-align: center;
+    }
+  </style>
+
+
+
+
+
+
+  <div class="all-t" style="margin-bottom: 50px;">
+    <div class="container">
+      <div class="row">
+
+        <div class="col-md-3 col-sm-6 col-xs-12" align="center">
+          <div class="teacher-content">
+            <center>
+              <div class="theacher-img">
+                <img class="img img-responsive" src="images/t1.jpg">
+              </div>
+              <div class="about-teacher">
+                <h4 onclick="displayAllTeacherInfo(1)"> MD. Abul Basar</h4>
+                <p>Assistance Teacher</p>
+                <ul>
+                  <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                  <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                  <li><a onclick="displayAllTeacherInfo(1)"><i class="fa fa-info-circle" aria-hidden="true"></i></a>
+                  </li>
+                </ul>
+              </div>
+            </center>
+          </div>
+        </div>
+
+        <div class="col-md-3 col-sm-6 col-xs-12" align="center">
+          <div class="teacher-content">
+            <center>
+              <div class="theacher-img">
+                <img class="img img-responsive" src="images/t1.jpg">
+              </div>
+              <div class="about-teacher">
+                <h4> MD. Abul Basar</h4>
+                <p>Assistance Teacher</p>
+                <ul>
+                  <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                  <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                  <li><a href="#"><i class="fa fa-info-circle" aria-hidden="true"></i></a></li>
+                </ul>
+              </div>
+            </center>
+          </div>
+        </div>
+
+        <div class="col-md-3 col-sm-6 col-xs-12" align="center">
+          <div class="teacher-content">
+            <center>
+              <div class="theacher-img">
+                <img class="img img-responsive" src="images/t1.jpg">
+              </div>
+              <div class="about-teacher">
+                <h4> MD. Abul Basar</h4>
+                <p>Assistance Teacher</p>
+                <ul>
+                  <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                  <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                  <li><a href="#"><i class="fa fa-info-circle" aria-hidden="true"></i></a></li>
+                </ul>
+              </div>
+            </center>
+          </div>
+        </div>
+
+        <div class="col-md-3 col-sm-6 col-xs-12" align="center">
+          <div class="teacher-content">
+            <center>
+              <div class="theacher-img">
+                <img class="img img-responsive" src="images/t1.jpg">
+              </div>
+              <div class="about-teacher">
+                <h4> MD. Abul Basar</h4>
+                <p>Assistance Teacher</p>
+                <ul>
+                  <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                  <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                  <li><a href="#"><i class="fa fa-info-circle" aria-hidden="true"></i></a></li>
+                </ul>
+              </div>
+            </center>
+          </div>
+        </div>
+
+
+        <div class="col-md-3 col-sm-6 col-xs-12" align="center">
+          <div class="teacher-content">
+            <center>
+              <div class="theacher-img">
+                <img class="img img-responsive" src="images/t1.jpg">
+              </div>
+              <div class="about-teacher">
+                <h4> MD. Abul Basar</h4>
+                <p>Assistance Teacher</p>
+                <ul>
+                  <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                  <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                  <li><a href="#"><i class="fa fa-info-circle" aria-hidden="true"></i></a></li>
+                </ul>
+              </div>
+            </center>
+          </div>
+        </div>
+
+
+
+        <div class="col-md-3 col-sm-6 col-xs-12" align="center">
+          <div class="teacher-content">
+            <center>
+              <div class="theacher-img">
+                <img class="img img-responsive" src="images/t1.jpg">
+              </div>
+              <div class="about-teacher">
+                <h4> MD. Abul Basar</h4>
+                <p>Assistance Teacher</p>
+                <ul>
+                  <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                  <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                  <li><a href="#"><i class="fa fa-info-circle" aria-hidden="true"></i></a></li>
+                </ul>
+              </div>
+            </center>
+          </div>
+        </div>
+
+
+
+
+
+
+
+
+
+
+      </div>
+
+    </div>
+  </div>
+
+  <div class="curr-t">
+
+    <div class="container">
+      <div class="row">
+
+        <div class="col-md-3 col-sm-6 col-xs-12" align="center">
+          <div class="teacher-content">
+            <center>
+              <div class="theacher-img">
+                <img class="img img-responsive" src="images/manna.jpg">
+              </div>
+              <div class="about-teacher">
+                <h4> MD. Abul Basar</h4>
+                <p>Assistance Teacher</p>
+                <ul>
+                  <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                  <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                  <li><a href="#"><i class="fa fa-info-circle" aria-hidden="true"></i></a></li>
+                </ul>
+              </div>
+            </center>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+
+  </div>
+
+
+  <div class="ret-t">
+
+
+
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <footer>
+
+    <div class="footer-area">
+
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4 col-sm-4 col-xs-12">
+            <div class="footer-content">
+              <div class="footer-head">
+                <div class="footer-logo">
+                  <h4>Social media</h4>
+                </div>
+
+                <p>
+                  You can connect with us by social media like facebook, twitter, etc. To connect with us by social
+                  media please visite the following link.
+
+
+                </p>
+                <div class="footer-icons">
+                  <ul>
+                    <li>
+                      <a href="#"><i class="fa fa-facebook"></i></a>
+                    </li>
+                    <li>
+                      <a href="#"><i class="fa fa-twitter"></i></a>
+                    </li>
+                    <li>
+                      <a href="#"><i class="fa fa-google"></i></a>
+                    </li>
+                    <li>
+                      <a href="#"><i class="fa fa-pinterest"></i></a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- end single footer -->
+          <div class="col-md-4 col-sm-4 col-xs-12">
+            <div class="footer-content">
+              <div class="footer-head">
+                <h4>Information</h4>
+                <p>
+                  To more know about our school, you can contract with following mobile number or email.
+                </p>
+                <div class="footer-contacts">
+                  <p><span>Tel:</span> +88016 85 187164</p>
+                  <p><span>Email:</span> contact@gamil.com</p>
+                  <p><span>Working Hours:</span> 9am-5pm</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- end single footer -->
+          <div class="col-md-4 col-sm-4 col-xs-12">
+            <div class="footer-content">
+              <div class="footer-head">
+                <h4>Photo gallery</h4>
+                <div class="flicker-img">
+
+                  <div class="raw">
+
+                    <div class="col-xs-4">
+                      <a href="photo_gallery.html"> <img style="cursor:pointer" class="img-thumbnail"
+                          src="images/portfolio/1.jpg" alt=""> </a>
+                    </div>
+                    <div class="col-xs-4">
+                      <a href="photo_gallery.html"> <img class="img-thumbnail" src="images/portfolio/2.jpg" alt="">
+                      </a>
+                    </div>
+                    <div class="col-xs-4">
+                      <a href="photo_gallery.html"> <img class="img-thumbnail" src="images/portfolio/3.jpg" alt="">
+                      </a>
+                    </div>
+
+                    <div class="col-xs-4">
+                      <a href="photo_gallery.html"> <img class="img-thumbnail" src="images/portfolio/4.jpg" alt="">
+                      </a>
+                    </div>
+                    <div class="col-xs-4">
+                      <a href="photo_gallery.html"> <img class="img-thumbnail" src="images/portfolio/5.jpg" alt="">
+                      </a>
+                    </div>
+                    <div class="col-xs-4">
+                      <a href="photo_gallery.html"> <img class="img-thumbnail" src="images/portfolio/6.jpg" alt="">
+                      </a>
+                    </div>
+
+                  </div>
+
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-area-bottom">
+
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="copyright text-center">
+              <p>
+                &copy; Copyright <strong>Hateya H.H.U High School</strong>. All Rights Reserved
+              </p>
+            </div>
+            <div class="credits">
+              <!--
+                    All the links in the footer should remain intact.
+                    You can delete the links only if you purchased the pro version.
+                    Licensing information: https://bootstrapmade.com/license/
+                    Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/buy/?theme=eBusiness
+                  -->
+              Developed by <a href="https://bootstrapmade.com/">Abdullah-Al-Mamun</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+
+
+
+
+
+
+</body>

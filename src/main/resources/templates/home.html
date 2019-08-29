@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org" >
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="shortcut icon" type="image/x-icon" href="mamun.jpg" />
+    <link rel="stylesheet" href="bootstrap.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="bootstrap.js"></script>
+</head>
+<body>
+
+<h1> Database Connection : </h1>
+<h1 th:text="${bol}"></h1>
+<h1 th:text="${ex}"></h1>
+<h1 th:text="${file_ex}"></h1>
+
+<img th:src="@{${file_ex}}" alt="upload image here">
+
+<form action="/upload" enctype="multipart/form-data" method="post">
+    <input type="file" name="file" required>
+    <input type="submit" value="Upload File">
+</form>
+
+</body>
+</html>
