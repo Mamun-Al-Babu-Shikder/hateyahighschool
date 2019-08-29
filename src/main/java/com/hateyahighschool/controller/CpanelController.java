@@ -41,15 +41,15 @@ public class CpanelController {
     @RequestMapping(value = "/cpanel")
     private String openCpanel(HttpServletRequest request)
     {
-        /*
+
         HttpSession session = request.getSession();
         if(session.getAttribute("login_email")==null){
             return "redirect:/login_page";
         }else{
             return "cpanel";
         }
-        */
-        return "cpanel";
+
+        //return "cpanel";
     }
 
 
@@ -136,16 +136,16 @@ public class CpanelController {
     @RequestMapping(value = "/access_about_us")
     private String getAboutUs(HttpServletRequest request, ModelMap modelMap)
     {
-        /*
+
         HttpSession session = request.getSession();
         if(session.getAttribute("login_email")==null){
             return "redirect:/login_page";
         }else{
             return "cpanel_about";
         }
-        */
 
-        return "cpanel_about";
+
+       // return "cpanel_about";
     }
 
 
