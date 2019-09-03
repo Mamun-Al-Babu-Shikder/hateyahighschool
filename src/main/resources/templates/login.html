@@ -22,14 +22,11 @@
 
     <script>
 
-
         function searchText2() {
             $.get("/access_class",{cls:6} ,function (data, status) {
                 alert(data);
             });
         }
-
-
 
 
         $(document).ready(function(){
@@ -43,7 +40,6 @@
             $("#getData").click(function () {
                 searchText2();
             });
-
 
 
 
@@ -95,75 +91,34 @@
         });
 
 
-
-
     </script>
-
-
-
-
-
-
 
 </head>
 
 <body style="background: #F6FAFB;">
-
     <center>
-
         <h4 style="margin-top: 80px; color: rgb(136, 136, 136);"> Please login at first to update information as an ADMIN.</h4>
-
-
         <p style="margin: 4px 0px 0px 6px; font-size: 11px; color: rgb(172, 172, 172);">Log in to get going.</p>
-        
         <div class="login-box">
             <div  style="width: 100%; height: 60px; background: #777; border-radius: 3px 3px 0px 0px;">
                <h2 style= " margin:0px; padding: 15px 0px; color:rgb(255, 251, 24);" > cPanel </h2>
             </div>
-
             <form  action="/login" method="post">
-
                 <div style="width: 100%; padding: 30px;">
- 
-                    
                      <p th:text="${login_error}" style="color: red; font-size: 12px;"></p>
-
                     <input  type="email" class="text-box" name="email" placeholder="Enter email" required/>
                     <input  type="password" class="text-box" name="password" placeholder="Enter password" required/>
                     <div style="display: flex; margin-top: 15px;" >
                           <input type="checkbox" class="check-box"  value=""/>  <p style="margin: 2px 0px 0px 5px; font-size: 11px;">  Remember me </p>
                     </div>
-                    
                     <input type="submit" value="Login" class="login-bnt"/>
-
-
                 </div>
-
             </form>
-
         </div>
-
     </center>
-
-
-
-
-
-
-
 
     <!--<button id="postData" style="margin-top:20px;">Send data to controller</button>-->
     <!--<button id="getData" style="margin-top:20px;">Click to get Data</button>-->
-
-
-
-
-
-
-
-
-
-
 
 </body>
 

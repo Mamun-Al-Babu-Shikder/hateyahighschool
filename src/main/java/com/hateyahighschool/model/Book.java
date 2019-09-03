@@ -18,7 +18,6 @@ public class Book {
     private String author;
     private String uploadDate;
     private Integer view;
-    @Column(length = 3)
     private String forCls;
 
     public Book(){}

@@ -87,7 +87,7 @@ public class ClassesController {
             List<ExamRoutine> examRoutineList = session.createQuery("from ExamRoutine where forClass="+_class+" order by id asc", ExamRoutine.class).list();
             modelMap.addAttribute("examRoutineList",examRoutineList);
 
-            List<ClassLecture> classLecturesList = session.createQuery("from ClassLecture where forClass="+_class+" order by id desc",ClassLecture.class).list();
+            List<ClassLecture> classLecturesList = session.createQuery("from ClassLecture where forClass="+_class+" order by id asc",ClassLecture.class).list();
             modelMap.addAttribute("classLecturesList", classLecturesList);
 
             List<ExamResult> examResultList = session.createQuery("from ExamResult where forClass="+_class+" order by id desc", ExamResult.class).list();
